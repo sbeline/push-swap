@@ -13,7 +13,7 @@
 #include "../includes/push-swap.h"
 #include "../libft/Includes/libft.h"
 
-void 		swap_stack(t_dllist **stack)
+void 			swap_stack(t_dllist **stack)
 {
 	t_llist		*ptr;
 	t_llist		*to_swap;
@@ -26,7 +26,17 @@ void 		swap_stack(t_dllist **stack)
 
 }
 
-void		rotate(t_llist **stack)
+void			rotate(t_dllist **stack)
 {
+	t_llist		*ptr;
 
+	ptr = (*stack)->tail;
+	(*stack)->tail->prev->next = NULL;
+	ptr->next = (*stack)->head;
+	(*stack)->head = ptr;
+}
+
+void			rrotate()
+{
+	/* code */
 }

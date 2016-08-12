@@ -50,7 +50,7 @@ int			main(int ac, char **av)
 	if (!ac)
 		return (-1);
 	stack_a = validate_and_stacka(av, ac);
-	swap_stack(&stack_a);
+	rotate(&stack_a);
 	ptr = stack_a->head;
 	while (ptr)
 	{
