@@ -5,5 +5,6 @@
 
 void 		swap_stack(t_dllist **stack);
 void		rotate(t_llist **stack);
+void		rrotate(t_dllist **stack);
 
 #endif

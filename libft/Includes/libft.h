@@ -6,7 +6,7 @@
 /*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/15 17:06:24 by sbeline           #+#    #+#             */
-/*   Updated: 2016/08/11 23:37:11 by salomon          ###   ########.fr       */
+/*   Updated: 2016/08/14 01:05:34 by salomon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,6 @@ void				ft_lstiter(t_llist *lst, void (*f)(t_llist *elem));
 void				ft_lsttri(t_llist **alst, int opt);
 t_llist				*ft_lstmap(t_llist *lst, t_llist *(*f)(t_llist *elem));
 t_llist				*ft_list_search(t_llist *e, const char *str);
-void				ft_lstswap(t_llist **alst);
+void				ft_lstswap(t_llist **alst);3
 
 #endif
