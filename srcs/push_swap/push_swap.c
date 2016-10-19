@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,23 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/libft.h"
+#include "../includes/push-swap.h"
+#include "../libft/Includes/libft.h"
 
-void		ft_lstadd(t_dllist **alst, t_llist *n)
+int			main(int ac, char **av)
 {
-	if (*alst != NULL)
+	t_dllist	*stack_a;
+	t_llist		*ptr;
+
+	ac--;
+	av++;
+	stack_a = NULL;
+	if (!ac)
+		return (-1);
+	stack_a = validate_and_stacka(av, ac);
+	checker(&stack_a, ac);
+/*	ptr = stack_a->tail;
+	while (ptr)
 	{
-		if (n != NULL)
-		{
-			(*alst)->tail->next = n;
-			n->prev = (*alst)->tail;
-			(*alst)->tail = n;
-			(*alst)->lenght++;
-			return ;
-		}
+		ft_putendl((const char*)ptr->content);
+		ptr = ptr->prev;
+	}*/
+	ptr = stack_a->head;
+	while (ptr)
+	{
+		ft_putendl((const char*)ptr->content);
+		ptr = ptr->next;
 	}
-	*alst = (t_dllist*)ft_memalloc(sizeof(t_dllist));
-	(*alst)->lenght++;
-	(*alst)->head = n;
-	(*alst)->tail = n;
+	return (0);
 }

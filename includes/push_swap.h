@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,23 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/libft.h"
+#ifndef PUSH_SWAP_H
+# define  PUSH_SWAP_H
 
-void		ft_lstadd(t_dllist **alst, t_llist *n)
-{
-	if (*alst != NULL)
-	{
-		if (n != NULL)
-		{
-			(*alst)->tail->next = n;
-			n->prev = (*alst)->tail;
-			(*alst)->tail = n;
-			(*alst)->lenght++;
-			return ;
-		}
-	}
-	*alst = (t_dllist*)ft_memalloc(sizeof(t_dllist));
-	(*alst)->lenght++;
-	(*alst)->head = n;
-	(*alst)->tail = n;
-}
+# include "../libft/Includes/libft.h"
+
+int			swap(t_dllist *stack, t_dllist *stack1, int opt);
+int			ft_rotate(t_dllist *stack, t_dllist *stack1, int opt);
+int			ft_rrotate(t_dllist *stack, t_dllist *stack1, int opt);
+
+int			stack_is_ok(t_dllist *stack_a, t_dllist *stack_b);
+
+void 		push(t_dllist **stack_src, t_dllist **stack_dst);
+
+
+void 		swap_stack(t_dllist **stack);
+void		rotate(t_dllist **stack);
+void		rrotate(t_dllist **stack);
+t_dllist	*validate_and_stacka(char **av, int ac);
+
+#endif

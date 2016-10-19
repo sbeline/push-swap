@@ -12,11 +12,9 @@
 
 #include "Includes/libft.h"
 
-t_llist		*ft_list_search(t_llist *e, const char *str)
+t_llist		*ft_list_search(t_llist *e, int str)
 {
-	while (((ft_strcmp(e->content, str)) && (e->next != NULL)))
+	while (((e->content == str) && (e->next != NULL)))
 		e = e->next;
-	if (e->content == NULL)
-		return (NULL);
-	return (e->content);
+	return (e);
 }

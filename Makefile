@@ -1,10 +1,12 @@
-NAME = push-swap
-SRC_NAME = push-swap.c \
-			operation_fc.c
+NAME = checker
 
+SRC_NAME = checker.c \
+			operation_fc.c \
+			operate.c
 
 INC_PATH = ./includes/
-SRC_PATH = ./srcs/*
+SRC_PATH = ./srcs/checker/
+SRC_COMMUN = ./srcs/commun/
 OBJ_PATH = ./obj/
 LIB_PATH = ./libft/
 LIB_NAME = libft.a
@@ -24,6 +26,11 @@ $(NAME): $(OBJ) libf
 $(OBJ_PATH)%.o:$(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
 	$(CC) -c $< -o $@
+
+$(OBJ_PATH)%.o:$(SRC_COMMUN)%.c
+	@mkdir -p $(OBJ_PATH)
+	$(CC) -c $< -o $@
+
 
 libf:
 	make -C $(LIB_PATH)

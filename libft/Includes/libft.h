@@ -140,19 +140,27 @@ int					get_next_line(int fd, char **line);
 
 typedef struct		s_llist
 {
-	void			*content;
+	int				content;
 	int				maillon_nb;
 	size_t			content_size;
 	struct s_llist	*next;
+	struct s_llist	*prev;
 }					t_llist;
 
-t_llist				*ft_lstnew(void const *content, size_t content_size);
+typedef struct		s_dllist
+{
+	size_t			lenght;
+	struct s_llist	*head;
+	struct s_llist	*tail;
+}					t_dllist;
+
+t_llist				*ft_lstnew(int content, size_t content_size);
 void				ft_lstdelone(t_llist **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_llist **alst, void (*del)(void *, size_t));
-void				ft_lstadd(t_llist **alst, t_llist *n);
+void				ft_lstadd(t_dllist **alst, t_llist *n);
 void				ft_lstiter(t_llist *lst, void (*f)(t_llist *elem));
 void				ft_lsttri(t_llist **alst, int opt);
 t_llist				*ft_lstmap(t_llist *lst, t_llist *(*f)(t_llist *elem));
-t_llist				*ft_list_search(t_llist *e, const char *str);
+t_llist				*ft_list_search(t_llist *e, int str);
 
 #endif

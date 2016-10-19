@@ -6,7 +6,7 @@
 #    By: sbeline  <sbeline @student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/14 14:10:26 by sbeline           #+#    #+#              #
-#    Updated: 2016/10/17 17:11:40 by sbeline          ###   ########.fr        #
+#    Updated: 2016/10/19 16:50:24 by sbeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libft.a
 
 SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c
 SRC += ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c
-SRC += ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstiter.c
+SRC += ft_lstadd.c ft_lstdel.c ft_lstiter.c
 SRC += ft_lstmap.c ft_lstnew.c ft_memalloc.c ft_memccpy.c
 SRC += ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memdel.c
 SRC += ft_memmove.c ft_memset.c ft_putchar.c ft_putchar_fd.c
