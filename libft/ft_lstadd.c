@@ -26,7 +26,7 @@ void		ft_lstadd(t_dllist **alst, t_llist *n)
 		}
 	}
 	*alst = (t_dllist*)ft_memalloc(sizeof(t_dllist));
-	(*alst)->lenght++;
+	(*alst)->lenght = 1;
 	(*alst)->head = n;
 	(*alst)->tail = n;
 }

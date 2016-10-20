@@ -39,29 +39,7 @@ int			checker(char *buf, t_dllist *stack_a, t_dllist *stack_b)
 	return (-1);
 }
 
-int			stack_is_ok(t_dllist *stack_a, t_dllist *stack_b)
-{
-	t_llist *ptr;
 
-	ptr = stack_a->head;
-	if (stack_b)
-	{
-		ft_putendl("KO");
-		return (-1);
-	}
-	while (ptr->next)
-	{
-		ft_putnbr(ptr->content);
-		if (ptr->content > ptr->next->content)
-		{
-			ft_putendl("KO");
-			return (-1);
-		}
-		ptr = ptr->next;
-	}
-	ft_putendl("OK");
-	return (1);
-}
 
 int			main(int ac, char **av)
 {

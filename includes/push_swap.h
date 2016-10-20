@@ -15,18 +15,24 @@
 
 # include "../libft/Includes/libft.h"
 
-int			swap(t_dllist *stack, t_dllist *stack1, int opt);
-int			ft_rotate(t_dllist *stack, t_dllist *stack1, int opt);
-int			ft_rrotate(t_dllist *stack, t_dllist *stack1, int opt);
+typedef struct		s_data
+{
+	int				pos_stacka;
+	int				pos_stackb;
+}					t_data;
 
-int			stack_is_ok(t_dllist *stack_a, t_dllist *stack_b);
+int					swap(t_dllist *stack, t_dllist *stack1, int opt);
+int					ft_rotate(t_dllist *stack, t_dllist *stack1, int opt);
+int					ft_rrotate(t_dllist *stack, t_dllist *stack1, int opt);
 
-void 		push(t_dllist **stack_src, t_dllist **stack_dst);
+int					stack_is_ok(t_dllist *stack_a, t_dllist *stack_b);
+
+void 				push(t_dllist **stack_src, t_dllist **stack_dst);
 
 
-void 		swap_stack(t_dllist **stack);
-void		rotate(t_dllist **stack);
-void		rrotate(t_dllist **stack);
-t_dllist	*validate_and_stacka(char **av, int ac);
+void 				swap_stack(t_dllist **stack);
+void				rotate(t_dllist **stack);
+void				rrotate(t_dllist **stack);
+t_dllist			*validate_and_stacka(char **av, int ac);
 
 #endif

@@ -10,10 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push-swap.h"
-#include "../libft/Includes/libft.h"
+#include "../../includes/push_swap.h"
 
-int			main(int ac, char **av)
+void 			push_swap(t_dllist *stack_a)
+{
+	t_dllist	*stack_b;
+	t_llist		*ptr_head;
+	t_llist		*ptr_tail;
+	int			mid;
+
+	if ((stack_a->lenght % 2) == 0)
+		mid = stack_a->lenght / 2;
+	else
+		mid = stack_a->lenght / 2 + 1;
+	stack_b =  NULL;
+	ptr_head = stack_a->head;
+	ptr_tail = stack_a->tail;
+	while (mid != 0)
+	{
+		ft_putstr("head=");
+		ft_putnbr(ptr_head->content);
+		ft_putstr(" ; tail=");
+		ft_putnbr(ptr_tail->content);
+		ft_putchar('\n');
+		ptr_head = ptr_head->next;
+		ptr_tail = ptr_tail->prev;
+		mid--;
+	}
+}
+
+int				main(int ac, char **av)
 {
 	t_dllist	*stack_a;
 	t_llist		*ptr;
@@ -24,18 +50,6 @@ int			main(int ac, char **av)
 	if (!ac)
 		return (-1);
 	stack_a = validate_and_stacka(av, ac);
-	checker(&stack_a, ac);
-/*	ptr = stack_a->tail;
-	while (ptr)
-	{
-		ft_putendl((const char*)ptr->content);
-		ptr = ptr->prev;
-	}*/
-	ptr = stack_a->head;
-	while (ptr)
-	{
-		ft_putendl((const char*)ptr->content);
-		ptr = ptr->next;
-	}
+	push_swap(stack_a);
 	return (0);
 }
