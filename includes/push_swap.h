@@ -21,6 +21,9 @@ typedef struct		s_data
 	int				pos_stackb;
 }					t_data;
 
+t_dllist			*error_gest(t_dllist **stack, int cod);
+int					control(char *av, t_dllist *stack);
+
 int					swap(t_dllist *stack, t_dllist *stack1, int opt);
 int					ft_rotate(t_dllist *stack, t_dllist *stack1, int opt);
 int					ft_rrotate(t_dllist *stack, t_dllist *stack1, int opt);

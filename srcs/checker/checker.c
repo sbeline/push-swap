@@ -53,7 +53,8 @@ int			main(int ac, char **av)
 	stack_b = NULL;
 	if (!ac)
 		return (-1);
-	stack_a = validate_and_stacka(av, ac);
+	if ((stack_a = validate_and_stacka(av, ac)) == NULL)
+		return (-1);
 	while ((get_next_line(1, &buf)) > 0)
 	{
 		if ((checker(buf, stack_a, stack_b)) != -1)

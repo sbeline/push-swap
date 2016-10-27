@@ -14,26 +14,17 @@
 
 t_dllist		*validate_and_stacka(char **av, int ac)
 {
-	t_dllist *stack;
-	char	*ptr;
-	int		i;
-	void 	*ptr1;
+	t_dllist	*stack;
+	char		*ptr;
+	int			cod;
+	int			i;
 
 	i = 0;
-	ptr1 = &i;
 	stack = NULL;
 	while (i < ac)
 	{
-		ptr = av[i];
-		while (*ptr)
-		{
-			if (!ft_isdigit(*ptr))
-			{
-				ft_putendl("ERROR:wrong input");
-				exit (1);
-			}
-			ptr++;
-		}
+		if ((cod = control(av[i], stack)) < 0)
+			return (error_gest(&stack, cod));
 		ft_lstadd(&stack, ft_lstnew(ft_atoi(av[i]), sizeof(int)));
 		i++;
 	}

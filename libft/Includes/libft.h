@@ -155,7 +155,6 @@ typedef struct		s_dllist
 }					t_dllist;
 
 t_llist				*ft_lstnew(int content, size_t content_size);
-void				ft_lstdelone(t_llist **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_llist **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_dllist **alst, t_llist *n);
 void				ft_lstiter(t_llist *lst, void (*f)(t_llist *elem));
