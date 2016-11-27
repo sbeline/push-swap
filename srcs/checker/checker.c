@@ -39,8 +39,6 @@ int			checker(char *buf, t_dllist *stack_a, t_dllist *stack_b)
 	return (-1);
 }
 
-
-
 int			main(int ac, char **av)
 {
 	t_dllist	*stack_a;

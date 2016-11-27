@@ -23,7 +23,7 @@ t_dllist		*validate_and_stacka(char **av, int ac)
 	stack = NULL;
 	while (i < ac)
 	{
-		if ((cod = control(av[i], stack)) < 0)
+		if ((cod = control(av[i], &stack)) < 0)
 			return (error_gest(&stack, cod));
 		ft_lstadd(&stack, ft_lstnew(ft_atoi(av[i]), sizeof(int)));
 		i++;
@@ -44,7 +44,8 @@ void 			swap_stack(t_dllist **stack)
 	to_swap->next = to_swap1;
 	to_swap1->prev = to_swap;
 	to_swap1->next = ptr;
-	ptr->prev = to_swap1;
+	if (ptr)
+		ptr->prev = to_swap1;
 	(*stack)->head = to_swap;
 }
 

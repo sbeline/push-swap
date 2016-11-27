@@ -1,20 +1,18 @@
 #include "../../includes/push_swap.h"
 
-int			control(char *av, t_dllist *stack)
+int			control(char *av, t_dllist **stack)
 {
 	t_llist *ptr;
 	int		nb;
 	int		i;
 
 	i = 0;
+	if ((*stack) == NULL)
+		return (1);
+	ptr = (*stack)->head;
 	while (av[i])
 		if (!ft_isdigit(av[i++]))
 			return (-1);
-	if (stack == NULL);
-		return (1);
-	ft_putendl("in");
-
-	ptr = stack->head;
 	nb = ft_atoi(av);
 	while (ptr)
 	{
@@ -38,10 +36,9 @@ t_dllist	*error_gest(t_dllist **stack, int cod)
 	if (ptr)
 	{
 		ptr_next = ptr->next;
-		ptr->content = 0;
+		ptr->content = '0';
 		free(ptr);
 		ptr = ptr_next;
-
 	}
 	return (NULL);
 }
