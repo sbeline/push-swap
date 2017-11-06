@@ -12,10 +12,32 @@
 
 #include "../../includes/push_swap.h"
 
+void 		print_stack_rev(t_dllist *stack, int mode)
+{
+	t_llist *ptr;
+
+	if (stack == NULL)
+		return ;
+	ptr = stack->tail;
+	if (mode == 0)
+		ft_putstr("stack_a=");
+	if (mode == 1)
+		ft_putstr("stack_b=");
+	while (ptr)
+	{
+		ft_putnbr(ptr->content);
+		ft_putchar(';');
+		ptr = ptr->prev;
+	}
+	ft_putchar('\n');
+}
+
 void 		print_stack(t_dllist *stack, int mode)
 {
 	t_llist *ptr;
 
+	if (stack == NULL)
+		return ;
 	ptr = stack->head;
 	if (mode == 0)
 		ft_putstr("stack_a=");
@@ -27,7 +49,9 @@ void 		print_stack(t_dllist *stack, int mode)
 		ft_putchar(';');
 		ptr = ptr->next;
 	}
+	ft_putchar('\n');
 }
+
 int			stack_is_ok(t_dllist *stack_a, t_dllist *stack_b)
 {
 	t_llist *ptr;

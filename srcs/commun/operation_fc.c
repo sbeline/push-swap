@@ -12,31 +12,25 @@
 
 #include "../../includes/push_swap.h"
 
-t_dllist		*validate_and_stacka(char **av, int ac)
-{
-	t_dllist	*stack;
-	char		*ptr;
-	int			cod;
-	int			i;
-
-	i = 0;
-	stack = NULL;
-	while (i < ac)
-	{
-		if ((cod = control(av[i], &stack)) < 0)
-			return (error_gest(&stack, cod));
-		ft_lstadd(&stack, ft_lstnew(ft_atoi(av[i]), sizeof(int)));
-		i++;
-	}
-	return (stack);
-}
-
 void 			swap_stack(t_dllist **stack)
 {
 	t_llist		*ptr;
 	t_llist		*to_swap;
 	t_llist		*to_swap1;
 
+	if (!(*stack)->head || !(*stack)->head->next)
+			return ;
+	if (!(*stack)->head->next->next)
+	{
+		ptr = (*stack)->head->next;
+		(*stack)->head->next = NULL;
+		ptr->next = (*stack)->head;
+		(*stack)->tail = (*stack)->head;
+		(*stack)->head = ptr;
+		(*stack)->tail->prev = (*stack)->head;
+		ptr->prev = NULL;
+		return ;
+	}
 	ptr = (*stack)->head->next->next;
 	to_swap = (*stack)->head->next;
 	to_swap1 = (*stack)->head;
@@ -44,8 +38,7 @@ void 			swap_stack(t_dllist **stack)
 	to_swap->next = to_swap1;
 	to_swap1->prev = to_swap;
 	to_swap1->next = ptr;
-	if (ptr)
-		ptr->prev = to_swap1;
+	ptr->prev = to_swap1;
 	(*stack)->head = to_swap;
 }
 
@@ -85,8 +78,18 @@ void 			push(t_dllist **stack_src, t_dllist **stack_dst)
 	t_llist *ptra;
 	t_llist *tmp;
 
-	ptr = (*stack_src)->head->next;
+	if (!(*stack_src))
+		return ;
 	tmp = (*stack_src)->head;
+	if (!(*stack_src)->head->next)
+	{
+		ft_lstadd(stack_dst, tmp);
+		(*stack_src)->head = NULL;
+		(*stack_src)->tail = NULL;
+		(*stack_src) = NULL;
+		return ;
+	}
+	ptr = (*stack_src)->head->next;
 	tmp->next = NULL;
 	tmp->prev = NULL;
 	if ((*stack_src) != NULL)

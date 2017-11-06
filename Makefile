@@ -7,6 +7,7 @@ CHECKER_NAME = checker.c
 PUSH_SWAP_NAME = push_swap.c
 
 COMMUN_NAME = operation_fc.c \
+				checker_ps.c \
 				operate.c \
 				error_gest.c \
 				operation_fc1.c
