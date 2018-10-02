@@ -72,6 +72,25 @@ void			rotate(t_dllist **stack)
 	(*stack)->head->prev = NULL;
 }
 
+void		ft_lstaddhead(t_dllist **alst, t_llist *n)
+{
+	if (*alst != NULL)
+	{
+		if (n != NULL)
+		{
+			(*alst)->head->prev = n;
+			n->next = (*alst)->head;
+			(*alst)->head = n;
+			(*alst)->lenght++;
+			return ;
+		}
+	}
+	*alst = (t_dllist*)ft_memalloc(sizeof(t_dllist));
+	(*alst)->lenght = 1;
+	(*alst)->head = n;
+	(*alst)->tail = n;
+}
+
 void 			push(t_dllist **stack_src, t_dllist **stack_dst)
 {
 	t_llist *ptr;
@@ -83,9 +102,10 @@ void 			push(t_dllist **stack_src, t_dllist **stack_dst)
 	tmp = (*stack_src)->head;
 	if (!(*stack_src)->head->next)
 	{
-		ft_lstadd(stack_dst, tmp);
+		ft_lstaddhead(stack_dst, tmp);
 		(*stack_src)->head = NULL;
 		(*stack_src)->tail = NULL;
+		(*stack_src)->lenght = 0;
 		(*stack_src) = NULL;
 		return ;
 	}
@@ -94,8 +114,9 @@ void 			push(t_dllist **stack_src, t_dllist **stack_dst)
 	tmp->prev = NULL;
 	if ((*stack_src) != NULL)
 	{
-		ft_lstadd(stack_dst, tmp);
+		ft_lstaddhead(stack_dst, tmp);
 		(*stack_src)->head = ptr;
+		(*stack_src)->lenght = (*stack_src)->lenght - 1;
 		ptr->prev = NULL;
 	}
 }
