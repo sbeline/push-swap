@@ -1,3 +1,6 @@
 obj_checker/*
 obj_commun/*
 obj_push_swap/*
+./checker
+.push_swap
+libft/*.o
