@@ -25,13 +25,15 @@ int				main(int ac, char **av)
 {
 	t_dllist	*stack_a;
 	t_llist		*ptr;
+	int				maxLenghtNb;
 
 	ac--;
 	av++;
 	stack_a = NULL;
+	maxLenghtNb = 0;
 	if (!ac)
 		return (-1);
-	stack_a = validate_and_stacka(av, ac);
+	stack_a = validate_and_stacka(av, ac,&maxLenghtNb);
 	push_swap(stack_a);
 	return (0);
 }

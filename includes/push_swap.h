@@ -39,6 +39,6 @@ void 				push(t_dllist **stack_src, t_dllist **stack_dst);
 void 				swap_stack(t_dllist **stack);
 void				rotate(t_dllist **stack);
 void				rrotate(t_dllist **stack);
-t_dllist			*validate_and_stacka(char **av, int ac);
+t_dllist		*validate_and_stacka(char **av, int ac, int *maxLenghtNb);
 
 #endif

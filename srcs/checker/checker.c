@@ -35,7 +35,47 @@ int			checker(char *buf, t_dllist *stack_a, t_dllist *stack_b)
 	return (-1);
 }
 
-void view_stack(t_dllist *a, t_dllist *b)
+void view_stack(t_dllist *a, t_dllist *b, int maxLenghtNb)
+{
+	printf("[%d]\n", maxLenghtNb);
+}
+
+int			main(int ac, char **av)
+{
+	t_dllist	*stack_a;
+	t_dllist	*stack_b;
+	char			*buf;
+	int				maxLenghtNb;
+
+	ac--;
+	av++;
+	stack_a = NULL;
+	stack_b = NULL;
+	maxLenghtNb = 0;
+	if (!ac)
+		return (-1);
+	if ((stack_a = validate_and_stacka(av, ac, &maxLenghtNb)) == NULL)
+		return (-1);
+	view_stack(stack_a, stack_b,maxLenghtNb);
+	while ((get_next_line(1, &buf)) > 0)
+	{
+		if ((checker(buf, stack_a, stack_b)) != -1 || !ft_strcmp(buf,"pa") || !ft_strcmp(buf,"pb"))
+		{
+			if (!ft_strcmp(buf, "pa"))
+				push(&stack_b, &stack_a);
+			if (!ft_strcmp(buf, "pb"))
+				push(&stack_a, &stack_b);
+			view_stack(stack_a, stack_b, maxLenghtNb);
+		}
+		else{
+			view_stack(stack_a, stack_b, maxLenghtNb);
+			return (stack_is_ok(stack_a, stack_b));
+		}
+	}
+	return (0);
+}
+
+void tmp(t_dllist *a, t_dllist *b, int maxLenghtNb)
 {
 	/* code */
 	t_llist *lst_a;
@@ -49,7 +89,7 @@ void view_stack(t_dllist *a, t_dllist *b)
 	lenghtA =  (a) ? a->lenght : 0;
 	lenghtB =  (b) ? b->lenght : 0;
 	printf("lenghtA=%dlenghtB=%d\n", lenghtA,lenghtB);
- 	count = (lenghtA >= lenghtB) ? lenghtA : lenghtB;
+	count = (lenghtA >= lenghtB) ? lenghtA : lenghtB;
 	lst_a = NULL;
 	lst_b = NULL;
 	if (	lenghtA || 	lenghtB)
@@ -96,37 +136,4 @@ void view_stack(t_dllist *a, t_dllist *b)
 			lenghtB = (lenghtB && (lenghtB >= countA))? lenghtB - 1 :lenghtB;
 		}
 	}
-}
-
-int			main(int ac, char **av)
-{
-	t_dllist	*stack_a;
-	t_dllist	*stack_b;
-	char		*buf;
-
-	ac--;
-	av++;
-	stack_a = NULL;
-	stack_b = NULL;
-	if (!ac)
-		return (-1);
-	if ((stack_a = validate_and_stacka(av, ac)) == NULL)
-		return (-1);
-	view_stack(stack_a, stack_b);
-	while ((get_next_line(1, &buf)) > 0)
-	{
-		if ((checker(buf, stack_a, stack_b)) != -1 || !ft_strcmp(buf,"pa") || !ft_strcmp(buf,"pb"))
-		{
-			if (!ft_strcmp(buf, "pa"))
-				push(&stack_b, &stack_a);
-			if (!ft_strcmp(buf, "pb"))
-				push(&stack_a, &stack_b);
-			view_stack(stack_a, stack_b);
-		}
-		else{
-			view_stack(stack_a, stack_b);
-			return (stack_is_ok(stack_a, stack_b));
-		}
-	}
-	return (0);
 }
