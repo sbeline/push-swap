@@ -10,6 +10,7 @@ COMMUN_NAME = operation_fc.c \
 				checker_ps.c \
 				operate.c \
 				error_gest.c \
+				print_stack.c \
 				operation_fc1.c
 
 

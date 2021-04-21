@@ -1,14 +1,5 @@
 #include "../../includes/push_swap.h"
 
-static int	nblen(int n)
-{
-	if (n < 0)
-		return (1 + nblen(-n));
-	if (n < 10)
-		return (1);
-	return (1 + nblen(n / 10));
-}
-
 t_dllist		*validate_and_stacka(char **av, int ac, int *maxLenghtNb)
 {
 	t_dllist	*stack;
@@ -22,8 +13,8 @@ t_dllist		*validate_and_stacka(char **av, int ac, int *maxLenghtNb)
 	{
 		if ((cod = control(av[i], &stack)) < 0)
 			return (error_gest(&stack, cod));
-		if (*maxLenghtNb < ft_atoi(av[i]))
-			*maxLenghtNb = nblen(ft_atoi(av[i]));
+		if (*maxLenghtNb < ft_nblen(ft_atoi(av[i])))
+			*maxLenghtNb = ft_nblen(ft_atoi(av[i]));
 		ft_lstadd(&stack, ft_lstnew(ft_atoi(av[i]), sizeof(int)));
 		i++;
 	}

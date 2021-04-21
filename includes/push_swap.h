@@ -23,6 +23,7 @@ typedef	struct		s_coor
 
 void 				print_stack(t_dllist *stack, int mode);
 void 				print_stack_rev(t_dllist *stack, int mode);
+void 				view_stack(t_dllist *a, t_dllist *b, int maxLenghtNb);
 
 int					control(char *av, t_dllist **stack);
 t_dllist			*error_gest(t_dllist **stack, int cod);

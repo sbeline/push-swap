@@ -35,10 +35,7 @@ int			checker(char *buf, t_dllist *stack_a, t_dllist *stack_b)
 	return (-1);
 }
 
-void view_stack(t_dllist *a, t_dllist *b, int maxLenghtNb)
-{
-	printf("[%d]\n", maxLenghtNb);
-}
+
 
 int			main(int ac, char **av)
 {
@@ -73,67 +70,4 @@ int			main(int ac, char **av)
 		}
 	}
 	return (0);
-}
-
-void tmp(t_dllist *a, t_dllist *b, int maxLenghtNb)
-{
-	/* code */
-	t_llist *lst_a;
-	t_llist *lst_b;
-	int count;
-	int countA;
-	int countB;
-
-	int lenghtA;
-	int lenghtB;
-	lenghtA =  (a) ? a->lenght : 0;
-	lenghtB =  (b) ? b->lenght : 0;
-	printf("lenghtA=%dlenghtB=%d\n", lenghtA,lenghtB);
-	count = (lenghtA >= lenghtB) ? lenghtA : lenghtB;
-	lst_a = NULL;
-	lst_b = NULL;
-	if (	lenghtA || 	lenghtB)
-	{
-		if (a && a->head) {
-			lst_a = (lenghtA) ? a->head : NULL;
-		}
-		if (b && b->head) {
-			lst_b = (lenghtB) ? b->head : NULL;
-
-		}
-		while (lst_a || lst_b){
-			/*ft_putstr("<->");
-			ft_putnbr(lenghtA );
-			ft_putstr("<->");
-			ft_putnbr(lenghtB );*/
-			if(lst_a && lenghtA >= lenghtB)
-			{
-				ft_putnbr(lst_a->content );
-				if ( lenghtA > lenghtB)
-				{
-					ft_putchar('\n');
-				}
-				lst_a = lst_a->next;
-
-			}
-			if(lst_b && lenghtB >= lenghtA)
-			{
-				if (lenghtB > lenghtA) {
-					/* code */
-					ft_putchar(' ');
-				}
-				ft_putnbr(lst_b->content );
-
-				if ( lenghtB >= lenghtA)
-				{
-					ft_putchar('\n');
-				}
-				lst_b = lst_b->next;
-			}
-			countA = lenghtA;
-			countB = lenghtB;
-			lenghtA = (lenghtA && (lenghtA >= countB))? lenghtA - 1 :lenghtA;
-			lenghtB = (lenghtB && (lenghtB >= countA))? lenghtB - 1 :lenghtB;
-		}
-	}
 }
