@@ -14,11 +14,6 @@
 
 int				push_swap(t_dllist *stack_a)
 {
-	print_stack(stack_a,0);
-	print_stack_rev(stack_a,0);
-	swap_stack(&stack_a);
-	print_stack(stack_a,0);
-	print_stack_rev(stack_a,0);
 }
 
 int				main(int ac, char **av)
