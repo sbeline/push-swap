@@ -20,6 +20,12 @@ void		ft_lstadd(t_dllist **alst, t_llist *n)
 		{
 			(*alst)->tail->next = n;
 			n->prev = (*alst)->tail;
+			if ((*alst)->last_entry_smallest->content > n->content)
+			{
+				n->smallest = 1;
+				(*alst)->last_entry_smallest->smallest = 0 ;
+				(*alst)->last_entry_smallest = n;
+			}
 			(*alst)->tail = n;
 			(*alst)->lenght++;
 			return ;
@@ -27,6 +33,8 @@ void		ft_lstadd(t_dllist **alst, t_llist *n)
 	}
 	*alst = (t_dllist*)ft_memalloc(sizeof(t_dllist));
 	(*alst)->lenght = 1;
+	n->smallest = 1;
 	(*alst)->head = n;
 	(*alst)->tail = n;
+	(*alst)->last_entry_smallest = n;
 }

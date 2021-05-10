@@ -1,5 +1,22 @@
 #include "../../includes/push_swap.h"
 
+int			stack_is_merge(t_dllist *stack)
+{
+	t_llist *ptr;
+	int		nb;
+
+	if ((stack) == NULL)
+		return (-1);
+	ptr = stack->head;
+	while (ptr->next)
+	{
+		if (ptr->content > ptr->next->content)
+			return (0);
+		ptr = ptr->next;
+	}
+	return (1);
+}
+
 int			control(char *av, t_dllist **stack)
 {
 	t_llist *ptr;

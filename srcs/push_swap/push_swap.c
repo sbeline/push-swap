@@ -12,10 +12,12 @@
 
 #include "../../includes/push_swap.h"
 
-int				push_swap(t_dllist *stack_a)
+int				push_swap(t_dllist *stack_a , int maxLenghtNb)
 {
+	divide_algo(stack_a, maxLenghtNb);
 }
 
+/*Don't forget to free t_dllist and t_llist*/
 int				main(int ac, char **av)
 {
 	t_dllist	*stack_a;
@@ -29,6 +31,6 @@ int				main(int ac, char **av)
 	if (!ac)
 		return (-1);
 	stack_a = validate_and_stacka(av, ac,&maxLenghtNb);
-	push_swap(stack_a);
+	push_swap(stack_a, maxLenghtNb);
 	return (0);
 }

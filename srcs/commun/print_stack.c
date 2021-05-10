@@ -43,11 +43,13 @@ void listA_is_supp(int maxLenghtNb, t_dllist *a, t_dllist *b)
 		{
 			placement_print(ft_itoa(lst_a->content), maxLenghtNb -
 												ft_nblen(lst_a->content), 1);
+			printf("smallest[%d]\n", lst_a->smallest);
 			lst_a = lst_a->next;
 			if (lst_b)
 			{
 				placement_print(ft_itoa(lst_b->content), maxLenghtNb -
 													ft_nblen(lst_b->content), 0);
+				printf("smallest[%d]\n", lst_a->smallest);
 				lst_b = lst_b->next;
 			}
 			ft_putchar('\n');
@@ -74,12 +76,14 @@ void listB_is_supp(int maxLenghtNb, t_dllist *a, t_dllist *b)
 			{
 				placement_print(ft_itoa(lst_a->content), maxLenghtNb -
 													ft_nblen(lst_a->content), 1);
+				printf("smallest[%d]\n", lst_a->smallest);
 				lst_a = lst_a->next;
 			} else {
 				placement_print(" ", maxLenghtNb - 1, 1);
 			}
 			placement_print(ft_itoa(lst_b->content), maxLenghtNb -
 											ft_nblen(lst_b->content), 0);
+			printf("smallest[%d]\n", lst_a->smallest);
 			lst_b = lst_b->next;
 			ft_putchar('\n');
 		}
@@ -88,14 +92,10 @@ void listB_is_supp(int maxLenghtNb, t_dllist *a, t_dllist *b)
 
 void view_stack(t_dllist *a, t_dllist *b, int maxLenghtNb)
 {
-	t_llist *lst_a;
-	t_llist *lst_b;
 	int lenghtA;
 	int lenghtB;
 
-//	printf("[%d]\n", maxLenghtNb);
 	maxLenghtNb += (maxLenghtNb % 2 == 0) ? 0 : 1;
-//	printf("[%d]\n", maxLenghtNb);
 	lenghtA =  (a) ? a->lenght : 0;
 	lenghtB =  (b) ? b->lenght : 0;
 	aff_stack_title(maxLenghtNb - 1);

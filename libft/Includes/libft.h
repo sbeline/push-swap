@@ -143,15 +143,16 @@ void 				ft_printmuliplecar(int nb,char c);
 typedef struct		s_llist
 {
 	int				content;
-	int				maillon_nb;
-	size_t			content_size;
+	size_t		content_size;
+	int				smallest;
 	struct s_llist	*next;
 	struct s_llist	*prev;
 }					t_llist;
 
 typedef struct		s_dllist
 {
-	size_t			lenght;
+	size_t					lenght;
+	struct s_llist	*last_entry_smallest;
 	struct s_llist	*head;
 	struct s_llist	*tail;
 }					t_dllist;
