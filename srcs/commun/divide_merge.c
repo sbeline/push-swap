@@ -30,7 +30,7 @@ static void fusion_merge(t_dllist *stack_a, t_dllist *stack_b)
       count++;
     }
   }
-  while (--count)
+  while (!stack_a->head->smallest)
   {
     ft_rotate(stack_a, NULL, 0);
   }
