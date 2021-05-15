@@ -27,7 +27,7 @@ void 				view_stack(t_dllist *a, t_dllist *b, int maxLenghtNb);
 
 int					stack_is_merge(t_dllist *stack);
 int					control(char *av, t_dllist **stack);
-t_dllist			*error_gest(t_dllist **stack, int cod);
+t_dllist		*error_gest(t_dllist **stack, int cod);
 
 int					swap(t_dllist *stack, t_dllist *stack1, int opt);
 int					ft_rotate(t_dllist *stack, t_dllist *stack1, int opt);
@@ -44,5 +44,5 @@ void				rrotate(t_dllist **stack);
 t_dllist		*validate_and_stacka(char **av, int ac, int *maxLenghtNb);
 
 void				divide_algo(t_dllist *stack_a, int maxLenghtNb);
-
+void 				merge_stack_brut(t_dllist *stack_a, t_dllist *stack_b);
 #endif

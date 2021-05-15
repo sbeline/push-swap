@@ -1,5 +1,19 @@
 #include "../../includes/push_swap.h"
 
+static int				check_list_integrity(t_dllist *stack, int entry)
+{
+	t_llist *ptr;
+
+	ptr = stack->head;
+	while (ptr)
+	{
+		if (entry == ptr->content)
+			return(1);
+		ptr = ptr->next;
+	}
+	return(0);
+}
+
 t_dllist		*validate_and_stacka(char **av, int ac, int *maxLenghtNb)
 {
 	t_dllist	*stack;

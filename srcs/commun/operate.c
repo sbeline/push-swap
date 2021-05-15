@@ -15,15 +15,22 @@
 int			swap(t_dllist *stack, t_dllist *stack1, int opt)
 {
 	if (opt == 0 && stack)
+	{
 		swap_stack(&stack);
+		ft_putstr("[sa]");
+	}
 	else if (opt == 1 && stack1)
+	{
 		swap_stack(&stack1);
+		ft_putstr("[sb]");
+	}
 	else if (opt == 2)
 	{
 		if (stack)
 			swap_stack(&stack);
 		if (stack1)
 			swap_stack(&stack);
+		ft_putstr("[ss]");
 	}
 	return (0);
 }
@@ -31,15 +38,22 @@ int			swap(t_dllist *stack, t_dllist *stack1, int opt)
 int			ft_rotate(t_dllist *stack, t_dllist *stack1, int opt)
 {
 	if (opt == 0 && stack)
+	{
 		rotate(&stack);
+		ft_putstr("[ra]");
+	}
 	else if (opt == 1 && stack1)
+	{
 		rotate(&stack1);
+		ft_putstr("[rb]");
+	}
 	else if (opt == 2)
 	{
 		if (stack)
 			rotate(&stack);
 		if (stack1)
 			rotate(&stack);
+		ft_putstr("[rb]");
 	}
 	return (0);
 }
@@ -47,15 +61,22 @@ int			ft_rotate(t_dllist *stack, t_dllist *stack1, int opt)
 int			ft_rrotate(t_dllist *stack, t_dllist *stack1, int opt)
 {
 	if (opt == 0 && stack)
+	{
 		rrotate(&stack);
+		ft_putstr("[rra]");
+	}
 	else if (opt == 1 && stack1)
+	{
 		rrotate(&stack1);
+		ft_putstr("[rrb]");
+	}
 	else if (opt == 2)
 	{
 		if (stack)
 			rrotate(&stack);
 		if (stack1)
 			rrotate(&stack);
+		ft_putstr("[rrr]");
 	}
 	return (0);
 }
