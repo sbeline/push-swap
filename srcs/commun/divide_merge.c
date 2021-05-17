@@ -1,22 +1,21 @@
 #include "../../includes/push_swap.h"
 
-static int 	determine_rotate(t_dllist *stack_a, t_dllist *stack_b, int a, int b)
+static int		swap_check(t_dllist *stack_a, t_dllist *stack_b, int a, int b)
 {
 	if (!a && stack_a && stack_a->head->next &&
-			!b && stack_b && stack_b->head->next) {
-				ft_putstr("test");
-				ft_rotate(stack_a, stack_b, 2);
-				return (1);
-	} else if (!a && stack_a && stack_a->head->next){
-
-		ft_rotate(stack_a, NULL, 0);
-		return (1);
+		 stack_a->head->content > stack_a->head->next->content &&
+		 !b && stack_b &&stack_b->head->next &&
+		 stack_b->head->content > stack_b->head->next->content) {
+		swap(stack_a, stack_b, 2);
 	}
-	else if (!b && stack_b && stack_b->head->next) {
-		ft_rotate(NULL, stack_b, 1);
-		return (1);
+	if (!a && stack_a && stack_a->head->next &&
+		 stack_a->head->content > stack_a->head->next->content) {
+		swap(stack_a, NULL, 0);
 	}
-	return (0);
+	if (!b && stack_b &&stack_b->head->next &&
+		 stack_b->head->content > stack_b->head->next->content) {
+		swap(NULL, stack_b, 1);
+	}
 }
 
 static t_dllist	*divide_stack(t_dllist *stack_a, int midLenghtStack)
@@ -63,47 +62,51 @@ void merge_stack_brut(t_dllist *stack_a, t_dllist *stack_b)
 {
 	int a_merge;
 	int b_merge;
-  int count_rotate;
+  int count_rotate_a;
+	int count_rotate_b;
 
 	a_merge = 0;
 	b_merge = 0;
-  count_rotate = 0;
-	while (!a_merge || !b_merge)
+  count_rotate_a = 0;
+	count_rotate_b = 0;
+	while (!(a_merge = stack_is_merge(stack_a)) ||
+	 	!(b_merge = stack_is_merge(stack_b)))
 	{
-    if (!a_merge && stack_a && stack_a->head->next &&
-       stack_a->head->content > stack_a->head->next->content) {
-      swap(stack_a, NULL, 0);
-    }
-    if (!b_merge && stack_b &&stack_b->head->next &&
-       stack_b->head->content > stack_b->head->next->content) {
-      swap(NULL, stack_b, 1);
+		swap_check(stack_a, stack_b, a_merge, b_merge);
 
-    }
-		/// logique to discuss 
-		if (!a_merge && stack_a && stack_a->head->next &&
-				!b_merge && stack_b && stack_b->head->next) {
-					ft_rotate(stack_a, stack_b, 2);
-		} else if (!a_merge && stack_a && stack_a->head->next){
-      ft_rotate(stack_a, NULL, 0);
-    }
-    else if (!b_merge && stack_b && stack_b->head->next) {
-      ft_rotate(NULL, stack_b, 1);
-    }
-    count_rotate++;
-		ft_putnbr(count_rotate);
+		if ((!a_merge && stack_a && stack_a->head->next) &&
+					(!b_merge && stack_b && stack_b->head->next)) {
+			ft_rotate(stack_a, stack_b, 2);
+			count_rotate_a++;
+			count_rotate_b++;
+		} else{
+			if (!a_merge && stack_a && stack_a->head->next){
+	      ft_rotate(stack_a, NULL, 0);
+				count_rotate_a++;
+	    }
+	    if (!b_merge && stack_b && stack_b->head->next) {
+	      ft_rotate(NULL, stack_b, 1);
+				count_rotate_b++;
+	    }
+		}
+		 if (!a_merge && stack_a && count_rotate_a == stack_a->lenght - 1 &&
+		 			!b_merge && stack_b && count_rotate_b == stack_b->lenght - 1) {
+						ft_rotate(stack_a, stack_b, 2);
+						count_rotate_a = 0;
+						count_rotate_b = 0;
+		 } else {
+			 if ( !a_merge && stack_a && count_rotate_a == stack_a->lenght - 1)
+	     {
+	         ft_rotate(stack_a, NULL, 0);
+	         count_rotate_a = 0;
+	     }
+	     if ( !b_merge && stack_b && count_rotate_b == stack_b->lenght - 1)
+	     {
+	       ft_rotate(NULL,stack_b , 1);
+	       count_rotate_b = 0;
+	     }
+		 }
 
-    if ( !a_merge && stack_a && count_rotate == stack_a->lenght - 1)
-    {
-        ft_rotate(stack_a, NULL, 0);
-        count_rotate = 0;
-    }
-    if ( !b_merge && stack_b && count_rotate == stack_b->lenght - 1)
-    {
-      ft_rotate(NULL,stack_b , 1);
-      count_rotate = 0;
-    }
-		a_merge = stack_is_merge(stack_a);
-		b_merge = stack_is_merge(stack_b);
 	}
 }
 

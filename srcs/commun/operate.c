@@ -53,7 +53,7 @@ int			ft_rotate(t_dllist *stack, t_dllist *stack1, int opt)
 			rotate(&stack);
 		if (stack1)
 			rotate(&stack);
-		ft_putstr("[rb]");
+		ft_putstr("[rr]");
 	}
 	return (0);
 }
