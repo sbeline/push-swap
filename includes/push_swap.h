@@ -32,8 +32,10 @@ t_dllist		*error_gest(t_dllist **stack, int cod);
 int					swap(t_dllist *stack, t_dllist *stack1, int opt);
 int					ft_rotate(t_dllist *stack, t_dllist *stack1, int opt);
 int					ft_rrotate(t_dllist *stack, t_dllist *stack1, int opt);
+void 				rest_src(t_dllist *stack_a, t_dllist *stack_b);
 
 int					stack_is_ok(t_dllist *stack_a, t_dllist *stack_b);
+void				determine_smallest(t_dllist *stack);
 
 void 				push(t_dllist **stack_src, t_dllist **stack_dst);
 

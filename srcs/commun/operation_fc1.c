@@ -12,6 +12,7 @@
 
 #include "../../includes/push_swap.h"
 
+
 int			stack_is_ok(t_dllist *stack_a, t_dllist *stack_b)
 {
 	t_llist *ptr;

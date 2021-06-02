@@ -43,7 +43,7 @@ void listA_is_supp(int maxLenghtNb, t_dllist *a, t_dllist *b)
 		{
 			placement_print(ft_itoa(lst_a->content), maxLenghtNb -
 												ft_nblen(lst_a->content), 1);
-			//printf("smallest[%d]\n", lst_a->smallest);
+			printf("smallest[%d]\n", lst_a->smallest);
 			lst_a = lst_a->next;
 			if (lst_b)
 			{
