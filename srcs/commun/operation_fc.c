@@ -91,6 +91,18 @@ void find_smallest(t_dllist *stack)
 	}
 }
 
+void rest_stack(t_dllist *stack_a, t_dllist *stack_b)
+{
+	while (!stack_a->head->smallest || !stack_b->head->smallest) {
+		if (!stack_a->head->smallest && !stack_b->head->smallest)
+			ft_rotate(stack_a, stack_b, 2);
+		else if (!stack_a->head->smallest)
+			ft_rotate(stack_a, NULL, 0);
+		else if (!stack_b->head->smallest)
+			ft_rotate(NULL, stack_b, 1);
+	}
+}
+
 void rest_src(t_dllist *stack_a, t_dllist *stack_b)
 {
 	if (stack_a->last_entry_smallest) {
@@ -103,6 +115,7 @@ void rest_src(t_dllist *stack_a, t_dllist *stack_b)
 	}
 	find_smallest(stack_a);
 	find_smallest(stack_b);
+	rest_stack(stack_a, stack_b);
 }
 
 void		ft_lstaddhead(t_dllist **alst, t_llist *n)

@@ -29,7 +29,7 @@ int			swap(t_dllist *stack, t_dllist *stack1, int opt)
 		if (stack)
 			swap_stack(&stack);
 		if (stack1)
-			swap_stack(&stack);
+			swap_stack(&stack1);
 		ft_putstr("[ss]");
 	}
 	return (0);
@@ -52,7 +52,7 @@ int			ft_rotate(t_dllist *stack, t_dllist *stack1, int opt)
 		if (stack)
 			rotate(&stack);
 		if (stack1)
-			rotate(&stack);
+			rotate(&stack1);
 		ft_putstr("[rr]");
 	}
 	return (0);
@@ -75,7 +75,7 @@ int			ft_rrotate(t_dllist *stack, t_dllist *stack1, int opt)
 		if (stack)
 			rrotate(&stack);
 		if (stack1)
-			rrotate(&stack);
+			rrotate(&stack1);
 		ft_putstr("[rrr]");
 	}
 	return (0);
