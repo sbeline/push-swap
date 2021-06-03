@@ -82,19 +82,40 @@ void merge_stack_brut(t_dllist *stack_a, t_dllist *stack_b)
 	{
 		if (!swap_check(stack_a, stack_b, a_merge, b_merge))
 		{
-			if (!a_merge && !b_merge)
-				ft_rotate(stack_a, stack_b, 2);
-			else if (!a_merge && count_rotate_a++ < stack_a->lenght)
-				ft_rotate(NULL, stack_b, 1);
-			else if (!b_merge && count_rotate_b++ < stack_a->lenght)
-				ft_rotate(stack_a, NULL, 0);
+			if (!a_merge && !b_merge && count_rotate_a < stack_a->lenght
+					&& count_rotate_b < stack_b->lenght)
+					{
+						ft_rotate(stack_a, stack_b, 2);
+						count_rotate_a++;
+						count_rotate_b++;
+					}
+			else {
+				if (!a_merge && count_rotate_a < stack_a->lenght)
+				{
+					ft_rotate(NULL, stack_b, 1);
+					count_rotate_a++;
+				}
+				else if (!b_merge && count_rotate_b < stack_b->lenght)
+				{
+					ft_rotate(stack_a, NULL, 0);
+					count_rotate_b++;
+				}
+			}
+			if (stack_a->head->lastest)
+			{
+				ft_putstr("in");
+				rest_stack(stack_a, NULL);
+			}
+			if (stack_b->head->lastest)
+			{
+				ft_putstr("in");
+				rest_stack(NULL, stack_b);
+			}
 		}
-		ft_putchar('\n');
-		view_stack(stack_a,stack_b, 42);
-		if ( == 15) {
-			exit(1);
-		}
-		printf("a_merge=[%d] , b_merge=[%d]\n",a_merge ,b_merge );
+
+		view_stack(stack_a, stack_b, 42);
+
+
 	/*	if (!a_merge && stack_a && stack_a->head->next){
       ft_rotate(stack_a, NULL, 0);
 			count_rotate_a++;

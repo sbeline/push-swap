@@ -145,6 +145,7 @@ typedef struct		s_llist
 	int				content;
 	size_t		content_size;
 	int				smallest;
+	int				lastest;
 	struct s_llist	*next;
 	struct s_llist	*prev;
 }					t_llist;
