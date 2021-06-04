@@ -66,76 +66,51 @@ static void fusion_merge(t_dllist *stack_a, t_dllist *stack_b)
   }
 }
 
+void reverse_stack_brut(t_dllist *stack_a, t_dllist *stack_b, int a, int b)
+{
+	if (!swap_check(stack_a, stack_b, a, b))
+	{
+		while (!stack_a->head->smallest || !stack_b->head->smallest)
+		{
+			if (!stack_a->head->smallest && !stack_b->head->smallest)
+				ft_rrotate(stack_a, stack_b, 2);
+			else if (!stack_a->head->smallest)
+				ft_rrotate(stack_a, NULL, 0);
+			else if (!stack_b->head->smallest)
+				ft_rrotate(NULL, stack_b, 1);
+			}
+	}
+}
 void merge_stack_brut(t_dllist *stack_a, t_dllist *stack_b)
 {
 	int a_merge;
 	int b_merge;
-  int count_rotate_a;
-	int count_rotate_b;
 
 	a_merge = 0;
 	b_merge = 0;
-  count_rotate_a = 0;
-	count_rotate_b = 0;
 	while (!(a_merge = stack_is_merge(stack_a)) ||
 	 	!(b_merge = stack_is_merge(stack_b)))
 	{
-		if (!swap_check(stack_a, stack_b, a_merge, b_merge))
+		if (stack_a->head->lastest && stack_b->head->lastest)
 		{
-			if (!a_merge && !b_merge && count_rotate_a < stack_a->lenght
-					&& count_rotate_b < stack_b->lenght)
-					{
-						ft_rotate(stack_a, stack_b, 2);
-						count_rotate_a++;
-						count_rotate_b++;
-					}
-			else {
-				if (!a_merge && count_rotate_a < stack_a->lenght)
-				{
+			ft_putstr("in");
+			reverse_stack_brut(stack_a, stack_b, a_merge, b_merge);
+
+		}
+		else
+		{
+			if (!swap_check(stack_a, stack_b, a_merge, b_merge))
+			{
+				if (!a_merge && !b_merge &&
+					 !stack_a->head->lastest && !stack_b->head->lastest)
+					ft_rotate(stack_a, stack_b, 2);
+				else if (!a_merge && !stack_a->head->lastest)
 					ft_rotate(NULL, stack_b, 1);
-					count_rotate_a++;
-				}
-				else if (!b_merge && count_rotate_b < stack_b->lenght)
-				{
+				else if (!b_merge && !stack_a->head->lastest)
 					ft_rotate(stack_a, NULL, 0);
-					count_rotate_b++;
-				}
-			}
-			if (stack_a->head->lastest)
-			{
-				ft_putstr("in");
-				rest_stack(stack_a, NULL);
-			}
-			if (stack_b->head->lastest)
-			{
-				ft_putstr("in");
-				rest_stack(NULL, stack_b);
 			}
 		}
-
 		view_stack(stack_a, stack_b, 42);
-
-
-	/*	if (!a_merge && stack_a && stack_a->head->next){
-      ft_rotate(stack_a, NULL, 0);
-			count_rotate_a++;
-
-    }
-    if (!b_merge && stack_b && stack_b->head->next) {
-      ft_rotate(NULL, stack_b, 1);
-			count_rotate_b++;
-    }
-
-    if ( !a_merge && stack_a && count_rotate_a == stack_a->lenght - 1)
-    {
-        ft_rotate(stack_a, NULL, 0);
-        count_rotate_a = 0;
-    }
-    if ( !b_merge && stack_b && count_rotate_b == stack_b->lenght - 1)
-    {
-      ft_rotate(NULL,stack_b , 1);
-      count_rotate_b = 0;
-    }*/
 	}
 }
 
@@ -150,9 +125,9 @@ void 			divide_algo(t_dllist *stack_a, int maxLenghtNb)
 	{
 		 stack_b = divide_stack(stack_a, stack_a->lenght / 2);
 	}
+	exit(1);
 	merge_stack_brut(stack_a, stack_b);
   fusion_merge(stack_a, stack_b);
 	ft_putchar('\n');
   view_stack(stack_a, stack_b, 42);
-
 }

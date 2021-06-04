@@ -77,7 +77,7 @@ void find_smallest(t_dllist *stack)
 	t_llist *ptr;
 
 	ptr = stack->head;
-	while (ptr->next)
+	while (ptr)
 	{
 		if (!(stack->last_entry_smallest)
 				|| stack->last_entry_smallest->content > ptr->content)
@@ -89,45 +89,6 @@ void find_smallest(t_dllist *stack)
 		}
 		ptr = ptr->next;
 	}
-}
-
-int	rest_stack(t_dllist *stack_a, t_dllist *stack_b)
-{
-	if (stack_a && stack_b) {
-		while (!stack_a->head->smallest || !stack_b->head->smallest) {
-			if (!stack_a->head->smallest && !stack_b->head->smallest)
-				ft_rotate(stack_a, stack_b, 2);
-			else if (!stack_a->head->smallest)
-				ft_rotate(stack_a, NULL, 0);
-			else if (!stack_b->head->smallest)
-				ft_rotate(NULL, stack_b, 1);
-		}
-	} else if (stack_a)
-	while (!stack_a->head->smallest || !stack_b->head->smallest) {
-		if (!stack_a->head->smallest && !stack_b->head->smallest)
-			ft_rotate(stack_a, stack_b, 2);
-		else if (!stack_a->head->smallest)
-			ft_rotate(stack_a, NULL, 0);
-		else if (!stack_b->head->smallest)
-			ft_rotate(NULL, stack_b, 1);
-	}
-}
-
-void rest_src(t_dllist *stack_a, t_dllist *stack_b)
-{
-	if (stack_a->last_entry_smallest) {
-		stack_a->last_entry_smallest->smallest = 0;
-		stack_a->last_entry_smallest = NULL;
-	}
-	if (stack_b->last_entry_smallest) {
-		stack_b->last_entry_smallest->smallest = 0;
-		stack_b->last_entry_smallest = NULL;
-	}
-	find_smallest(stack_a);
-	find_smallest(stack_b);
-	rest_stack(stack_a, stack_b);
-	stack_a->tail->lastest = 1;
-	stack_b->tail->lastest = 1;
 }
 
 void		ft_lstaddhead(t_dllist **alst, t_llist *n)

@@ -43,13 +43,13 @@ void listA_is_supp(int maxLenghtNb, t_dllist *a, t_dllist *b)
 		{
 			placement_print(ft_itoa(lst_a->content), maxLenghtNb -
 												ft_nblen(lst_a->content), 1);
-		//	printf("smallest[%d]\n", lst_a->smallest);
+			printf("nb[%d]lastest[%d]smallest[%d]\n",lst_a->content, lst_a->lastest, lst_a->smallest);
 			lst_a = lst_a->next;
 			if (lst_b)
 			{
 				placement_print(ft_itoa(lst_b->content), maxLenghtNb -
 													ft_nblen(lst_b->content), 0);
-				//printf("smallest[%d]\n", lst_a->smallest);
+				printf("nb[%d]lastest[%d]smallest[%d]\n",lst_a->content, lst_a->lastest, lst_a->smallest);
 				lst_b = lst_b->next;
 			}
 			ft_putchar('\n');
@@ -76,14 +76,14 @@ void listB_is_supp(int maxLenghtNb, t_dllist *a, t_dllist *b)
 			{
 				placement_print(ft_itoa(lst_a->content), maxLenghtNb -
 													ft_nblen(lst_a->content), 1);
-				//printf("smallest[%d]\n", lst_a->smallest);
+				printf("lastlest[%d]\n", lst_a->lastest);
 				lst_a = lst_a->next;
 			} else {
 				placement_print(" ", maxLenghtNb - 1, 1);
 			}
 			placement_print(ft_itoa(lst_b->content), maxLenghtNb -
 											ft_nblen(lst_b->content), 0);
-			//printf("smallest[%d]\n", lst_a->smallest);
+			printf("lastestlest[%d]\n", lst_a->smallest);
 			lst_b = lst_b->next;
 			ft_putchar('\n');
 		}
