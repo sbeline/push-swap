@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   divide_merge.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/10 14:09:51 by sbeline           #+#    #+#             */
+/*   Updated: 2021/06/10 14:15:18 by sbeline          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/push_swap.h"
 
 static int		swap_check(t_dllist *stack_a, t_dllist *stack_b, int a, int b)
 {
 	if (!a && stack_a && stack_a->head->next &&
-		 stack_a->head->content > stack_a->head->next->content &&
+		stack_a->head->content > stack_a->head->next->content &&
 		 !b && stack_b &&stack_b->head->next &&
 		 stack_b->head->content > stack_b->head->next->content) {
 		swap(stack_a, stack_b, 2);
@@ -37,12 +49,12 @@ static t_dllist	*divide_stack(t_dllist *stack_a, int midLenghtStack)
 	}
 	//determine smallest for each stack
 	rest_src(stack_a, stack_b);
-	view_stack(stack_a, NULL, 42);
-	view_stack(stack_b, NULL, 42);
+	//view_stack(stack_a, NULL, 42);
+	//view_stack(stack_b, NULL, 42);
 	return (stack_b);
 }
 
-static void fusion_merge(t_dllist *stack_a, t_dllist *stack_b)
+static void 	fusion_merge(t_dllist *stack_a, t_dllist *stack_b)
 {
   int count;
 
@@ -66,36 +78,36 @@ static void fusion_merge(t_dllist *stack_a, t_dllist *stack_b)
   }
 }
 
-void reverse_stack_brut(t_dllist *stack_a, t_dllist *stack_b, int a, int b)
+void			reverse_stack_brut(t_dllist *s_a, t_dllist *s_b, int a, int b)
 {
-	if (!swap_check(stack_a, stack_b, a, b))
+	if (!swap_check(s_a, s_b, a, b))
 	{
-		while (!stack_a->head->smallest || !stack_b->head->smallest)
+		while (!s_a->head->smallest || !s_b->head->smallest)
 		{
-			if (!stack_a->head->smallest && !stack_b->head->smallest)
-				ft_rrotate(stack_a, stack_b, 2);
-			else if (!stack_a->head->smallest)
-				ft_rrotate(stack_a, NULL, 0);
-			else if (!stack_b->head->smallest)
-				ft_rrotate(NULL, stack_b, 1);
+			if (!s_a->head->smallest && !s_b->head->smallest)
+				ft_rrotate(s_a, s_b, 2);
+			else if (!s_a->head->smallest)
+				ft_rrotate(s_a, NULL, 0);
+			else if (!s_b->head->smallest)
+				ft_rrotate(NULL, s_b, 1);
 			}
 	}
 }
-void merge_stack_brut(t_dllist *stack_a, t_dllist *stack_b)
+void			merge_stack_brut(t_dllist *stack_a, t_dllist *stack_b)
 {
 	int a_merge;
 	int b_merge;
+	int debug = 0;
 
 	a_merge = 0;
 	b_merge = 0;
-	while (!(a_merge = stack_is_merge(stack_a)) ||
-	 	!(b_merge = stack_is_merge(stack_b)))
+	while (!a_merge || !b_merge)
 	{
-		if (stack_a->head->lastest && stack_b->head->lastest)
+		a_merge = stack_raw_is_merge(stack_a);
+		b_merge = stack_raw_is_merge(stack_b);
+		if (stack_a->head->lastest || stack_b->head->lastest)
 		{
-			ft_putstr("in");
 			reverse_stack_brut(stack_a, stack_b, a_merge, b_merge);
-
 		}
 		else
 		{
@@ -105,12 +117,11 @@ void merge_stack_brut(t_dllist *stack_a, t_dllist *stack_b)
 					 !stack_a->head->lastest && !stack_b->head->lastest)
 					ft_rotate(stack_a, stack_b, 2);
 				else if (!a_merge && !stack_a->head->lastest)
-					ft_rotate(NULL, stack_b, 1);
-				else if (!b_merge && !stack_a->head->lastest)
 					ft_rotate(stack_a, NULL, 0);
+				else if (!b_merge && !stack_a->head->lastest)
+					ft_rotate(NULL, stack_b, 1);
 			}
 		}
-		view_stack(stack_a, stack_b, 42);
 	}
 }
 
@@ -120,13 +131,13 @@ void 			divide_algo(t_dllist *stack_a, int maxLenghtNb)
 	t_dllist	*stack_b;
 
 	stack_b = NULL;
-  view_stack(stack_a, stack_b, 42);
+  //view_stack(stack_a, stack_b, 42);
 	if (stack_a->lenght)
 	{
 		 stack_b = divide_stack(stack_a, stack_a->lenght / 2);
 	}
-	exit(1);
 	merge_stack_brut(stack_a, stack_b);
+	rest_src(stack_a, stack_b);
   fusion_merge(stack_a, stack_b);
 	ft_putchar('\n');
   view_stack(stack_a, stack_b, 42);

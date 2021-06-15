@@ -3,32 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   operation_fc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2016/10/17 17:05:15 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/06/14 11:46:43 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void 			swap_stack(t_dllist **stack)
+void	swap_stack1(t_dllist **stack, t_llist *ptr)
+{
+	ptr = (*stack)->head->next;
+	(*stack)->head->next = NULL;
+	ptr->next = (*stack)->head;
+	(*stack)->tail = (*stack)->head;
+	(*stack)->head = ptr;
+	(*stack)->tail->prev = (*stack)->head;
+	ptr->prev = NULL;
+}
+
+void	swap_stack(t_dllist **stack)
 {
 	t_llist		*ptr;
 	t_llist		*to_swap;
 	t_llist		*to_swap1;
 
 	if (!(*stack)->head || !(*stack)->head->next)
-			return ;
+		return ;
 	if (!(*stack)->head->next->next)
 	{
-		ptr = (*stack)->head->next;
-		(*stack)->head->next = NULL;
-		ptr->next = (*stack)->head;
-		(*stack)->tail = (*stack)->head;
-		(*stack)->head = ptr;
-		(*stack)->tail->prev = (*stack)->head;
-		ptr->prev = NULL;
+		swap_stack1(stack, ptr);
 		return ;
 	}
 	ptr = (*stack)->head->next->next;
@@ -42,7 +47,7 @@ void 			swap_stack(t_dllist **stack)
 	(*stack)->head = to_swap;
 }
 
-void			rrotate(t_dllist **stack)
+void	rrotate(t_dllist **stack)
 {
 	t_llist		*ptr;
 	t_llist		*to_swap;
@@ -57,41 +62,7 @@ void			rrotate(t_dllist **stack)
 	(*stack)->tail = ptr;
 }
 
-void			rotate(t_dllist **stack)
-{
-	t_llist 	*ptr;
-	t_llist		*to_swap;
-
-	ptr = (*stack)->head->next;
-	to_swap = (*stack)->head;
-	(*stack)->tail->next = to_swap;
-	to_swap->prev = (*stack)->tail;
-	(*stack)->tail = to_swap;
-	to_swap->next = NULL;
-	(*stack)->head = ptr;
-	(*stack)->head->prev = NULL;
-}
-
-void find_smallest(t_dllist *stack)
-{
-	t_llist *ptr;
-
-	ptr = stack->head;
-	while (ptr)
-	{
-		if (!(stack->last_entry_smallest)
-				|| stack->last_entry_smallest->content > ptr->content)
-		{
-			if (stack->last_entry_smallest)
-				stack->last_entry_smallest->smallest = 0;
-			stack->last_entry_smallest = ptr;
-			ptr->smallest = 1;
-		}
-		ptr = ptr->next;
-	}
-}
-
-void		ft_lstaddhead(t_dllist **alst, t_llist *n)
+void	ft_lstaddhead(t_dllist **alst, t_llist *n)
 {
 	if (*alst != NULL)
 	{
@@ -104,16 +75,16 @@ void		ft_lstaddhead(t_dllist **alst, t_llist *n)
 			return ;
 		}
 	}
-	*alst = (t_dllist*)ft_memalloc(sizeof(t_dllist));
+	*alst = (t_dllist *)ft_memalloc(sizeof(t_dllist));
 	(*alst)->lenght = 1;
 	(*alst)->head = n;
 	(*alst)->tail = n;
 }
 
-void 			push(t_dllist **stack_src, t_dllist **stack_dst)
+void	push(t_dllist **stack_src, t_dllist **stack_dst)
 {
-	t_llist *ptr;
-	t_llist *tmp;
+	t_llist		*ptr;
+	t_llist		*tmp;
 
 	if (!(*stack_src))
 		return ;

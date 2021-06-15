@@ -1,20 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker_ps.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/10 14:12:03 by sbeline           #+#    #+#             */
+/*   Updated: 2021/06/14 14:58:43 by sbeline          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/push_swap.h"
 
-static int				check_list_integrity(t_dllist *stack, int entry)
+int 	check_list_integrity(t_dllist *stack, int entry)
 {
-	t_llist *ptr;
+	t_llist		*ptr;
 
 	ptr = stack->head;
 	while (ptr)
 	{
 		if (entry == ptr->content)
-			return(1);
+			return (1);
 		ptr = ptr->next;
 	}
-	return(0);
+	return (0);
 }
 
-t_dllist		*validate_and_stacka(char **av, int ac, int *maxLenghtNb)
+t_dllist 	*validate_and_stacka(char **av, int ac, int *maxLenghtNb)
 {
 	t_dllist	*stack;
 	char		*ptr;
@@ -25,7 +37,8 @@ t_dllist		*validate_and_stacka(char **av, int ac, int *maxLenghtNb)
 	stack = NULL;
 	while (i < ac)
 	{
-		if ((cod = control(av[i], &stack)) < 0)
+		cod = control(av[i], &stack);
+		if (cod < 0)
 			return (error_gest(&stack, cod));
 		if (*maxLenghtNb < ft_nblen(ft_atoi(av[i])))
 			*maxLenghtNb = ft_nblen(ft_atoi(av[i]));

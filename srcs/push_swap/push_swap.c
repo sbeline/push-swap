@@ -3,29 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2016/10/17 17:05:15 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/06/11 14:18:51 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int				push_swap(t_dllist *stack_a , int maxLenghtNb)
+int 	push_swap(t_dllist *stack_a, int maxLenghtNb)
 {
 	if (stack_a->lenght < 30 )
 		divide_algo(stack_a, maxLenghtNb);
 	else
 		merge_stack_brut(stack_a, NULL);
-
 }
 
-int				main(int ac, char **av)
+int 	main(int ac, char **av)
 {
 	t_dllist	*stack_a;
 	t_llist		*ptr;
-	int				maxLenghtNb;
+	int			maxLenghtNb;
 
 	ac--;
 	av++;
@@ -33,7 +32,7 @@ int				main(int ac, char **av)
 	maxLenghtNb = 0;
 	if (!ac)
 		return (-1);
-	stack_a = validate_and_stacka(av, ac,&maxLenghtNb);
+	stack_a = validate_and_stacka(av, ac, &maxLenghtNb);
 	if (stack_a)
 		push_swap(stack_a, maxLenghtNb);
 	return (0);

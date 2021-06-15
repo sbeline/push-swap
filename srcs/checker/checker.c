@@ -53,7 +53,7 @@ int			main(int ac, char **av)
 		return (-1);
 	if ((stack_a = validate_and_stacka(av, ac, &maxLenghtNb)) == NULL)
 		return (-1);
-	view_stack(stack_a, stack_b,maxLenghtNb);
+	//view_stack(stack_a, stack_b,maxLenghtNb);
 	while ((get_next_line(1, &buf)) > 0)
 	{
 		if ((checker(buf, stack_a, stack_b)) != -1 || !ft_strcmp(buf,"pa") || !ft_strcmp(buf,"pb"))
@@ -62,10 +62,10 @@ int			main(int ac, char **av)
 				push(&stack_b, &stack_a);
 			if (!ft_strcmp(buf, "pb"))
 				push(&stack_a, &stack_b);
-			view_stack(stack_a, stack_b, maxLenghtNb);
+			//view_stack(stack_a, stack_b, maxLenghtNb);
 		}
 		else{
-			view_stack(stack_a, stack_b, maxLenghtNb);
+			//view_stack(stack_a, stack_b, maxLenghtNb);
 			return (stack_is_ok(stack_a, stack_b));
 		}
 	}

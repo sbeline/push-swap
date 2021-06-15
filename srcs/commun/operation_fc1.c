@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   operation_fc1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2016/10/17 17:05:15 by sbeline          ###   ########.fr       */
+/*   Created: 2021/06/10 14:11:42 by sbeline           #+#    #+#             */
+/*   Updated: 2021/06/14 12:23:11 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void rest_one_stack(t_dllist *stack)
+void 	rest_one_stack(t_dllist *stack)
 {
 	if (!stack)
 		return ;
@@ -31,13 +31,15 @@ void	rest_stack(t_dllist *stack_a, t_dllist *stack_b)
 	}
 }
 
-void rest_src(t_dllist *stack_a, t_dllist *stack_b)
+void 	rest_src(t_dllist *stack_a, t_dllist *stack_b)
 {
-	if (stack_a->last_entry_smallest) {
+	if (stack_a->last_entry_smallest)
+	{
 		stack_a->last_entry_smallest->smallest = 0;
 		stack_a->last_entry_smallest = NULL;
 	}
-	if (stack_b->last_entry_smallest) {
+	if (stack_b->last_entry_smallest)
+	{
 		stack_b->last_entry_smallest->smallest = 0;
 		stack_b->last_entry_smallest = NULL;
 	}
@@ -48,9 +50,9 @@ void rest_src(t_dllist *stack_a, t_dllist *stack_b)
 	stack_b->tail->lastest = 1;
 }
 
-int			stack_is_ok(t_dllist *stack_a, t_dllist *stack_b)
+int 	stack_is_ok(t_dllist *stack_a, t_dllist *stack_b)
 {
-	t_llist *ptr;
+	t_llist	*ptr;
 
 	ptr = stack_a->head;
 	if (stack_b)
@@ -63,4 +65,19 @@ int			stack_is_ok(t_dllist *stack_a, t_dllist *stack_b)
 	}
 	ft_putendl("OK");
 	return (1);
+}
+
+void	rotate(t_dllist **stack)
+{
+	t_llist		*ptr;
+	t_llist		*to_swap;
+
+	ptr = (*stack)->head->next;
+	to_swap = (*stack)->head;
+	(*stack)->tail->next = to_swap;
+	to_swap->prev = (*stack)->tail;
+	(*stack)->tail = to_swap;
+	to_swap->next = NULL;
+	(*stack)->head = ptr;
+	(*stack)->head->prev = NULL;
 }
