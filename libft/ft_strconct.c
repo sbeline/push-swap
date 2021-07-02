@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strconct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2016/10/17 17:05:15 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/07/02 15:24:28 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*strconct(char *s1, char *s2, const char *obj)
 {
-	char *tmp;
-	char *ret;
+	char	*tmp;
+	char	*ret;
 
 	tmp = ft_strcatdup(s1, obj);
 	ret = ft_strcatdup(tmp, s2);

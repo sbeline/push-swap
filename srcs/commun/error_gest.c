@@ -6,18 +6,16 @@
 /*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:10:17 by sbeline           #+#    #+#             */
-/*   Updated: 2021/06/10 14:11:03 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/06/15 07:01:25 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int			stack_raw_is_merge(t_dllist *stack)
+int 	stack_raw_is_merge(t_dllist *stack)
 {
-	t_llist *ptr;
-	int		nb;
-
-	printf("value to check stack [%d] should be the same[%d]\n", stack->head->content, stack->last_entry_smallest->content);
+	t_llist		*ptr;
+	int			nb;
 
 	if ((stack) == NULL)
 		return (-1);
@@ -32,24 +30,18 @@ int			stack_raw_is_merge(t_dllist *stack)
 			ptr = stack->head;
 		else
 		{
-				printf("compare [%d] > to [%d]\n", ptr->content, ptr->next->content);
-				if (!ptr->next->smallest && ptr->content > ptr->next->content)
-				{
-					printf("in error_ stack_raw_is_merge\n" );
-					return (0);
-
-				}
-				ptr = ptr->next;
+			if (!ptr->next->smallest && ptr->content > ptr->next->content)
+				return (0);
+			ptr = ptr->next;
 		}
 	}
-	printf("succed stack_raw_is_merge\n");
 	return (1);
 }
 
-int			stack_is_merge(t_dllist *stack)
+int 	stack_is_merge(t_dllist *stack)
 {
-	t_llist *ptr;
-	int		nb;
+	t_llist		*ptr;
+	int			nb;
 
 	if ((stack) == NULL)
 		return (-1);
@@ -63,11 +55,11 @@ int			stack_is_merge(t_dllist *stack)
 	return (1);
 }
 
-int			control(char *av, t_dllist **stack)
+int 	control(char *av, t_dllist **stack)
 {
-	t_llist *ptr;
-	int		nb;
-	int		i;
+	t_llist		*ptr;
+	int			nb;
+	int			i;
 
 	i = 0;
 	if ((*stack) == NULL)
@@ -88,8 +80,8 @@ int			control(char *av, t_dllist **stack)
 
 t_dllist	*error_gest(t_dllist **stack, int cod)
 {
-	t_llist *ptr;
-	t_llist *ptr_next;
+	t_llist		*ptr;
+	t_llist		*ptr_next;
 
 	if (cod == -1)
 		ft_putendl("stack invalid: invalid input");

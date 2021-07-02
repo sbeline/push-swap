@@ -12,6 +12,7 @@ COMMUN_NAME = operation_fc.c \
 				error_gest.c \
 				print_stack.c \
 				divide_merge.c \
+				divide_merge1.c \
 				operation_fc1.c
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2016/10/17 17:05:15 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/06/16 07:08:13 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	*ft_memccpy(void *s1, const void *s2, int c, size_t n)
 	unsigned char	*d;
 
 	i = 0;
-	s = (unsigned char*)s1;
-	d = (unsigned char*)s2;
+	s = (unsigned char *)s1;
+	d = (unsigned char *)s2;
 	while (i < n && d[i] != (unsigned char)c)
 	{
 		s[i] = d[i];
@@ -33,5 +33,5 @@ void	*ft_memccpy(void *s1, const void *s2, int c, size_t n)
 		s[i] = d[i];
 		i++;
 	}
-	return ((void*)(s + i));
+	return ((void *)(s + i));
 }

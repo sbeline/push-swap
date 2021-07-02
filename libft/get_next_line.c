@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2016/10/17 17:05:15 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/06/16 07:35:52 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/libft.h"
 
-static t_fd		*new_data_fd(int const fd)
+static t_fd 	*new_data_fd(int const fd)
 {
 	t_fd	*new;
 
-	if ((new = (t_fd *)malloc(sizeof(t_fd))) != NULL)
+	new = (t_fd *)malloc(sizeof(t_fd));
+	if (new)
 	{
 		new->fd = fd;
 		new->nl = 0;
@@ -28,7 +29,7 @@ static t_fd		*new_data_fd(int const fd)
 	return (new);
 }
 
-static t_fd		*get_data_fd(t_fd **lst_fd, int const fd)
+t_fd	*get_data_fd(t_fd **lst_fd, int const fd)
 {
 	t_fd	*tmp;
 
@@ -46,37 +47,43 @@ static t_fd		*get_data_fd(t_fd **lst_fd, int const fd)
 	return (NULL);
 }
 
-static void		ft_read(t_fd *d_fd)
+void	ft_read(t_fd *d_fd)
 {
 	char		*tmp;
 
 	tmp = (char *)malloc(sizeof(char) * (BUF_SIZE + 1));
-	if ((d_fd->ret = read(d_fd->fd, tmp, BUF_SIZE)) == -1)
+	d_fd->ret = read(d_fd->fd, tmp, BUF_SIZE);
+	if (d_fd->ret == -1)
 		return ;
 	tmp[d_fd->ret] = '\0';
 	d_fd->buf = ft_stradd(&d_fd->buf, &tmp);
-	while ((d_fd->pos_nl = ft_strchr(d_fd->buf, '\n')) == 0 && d_fd->ret > 0)
+	d_fd->pos_nl = ft_strchr(d_fd->buf, '\n');
+	while (d_fd->pos_nl == 0 && d_fd->ret > 0)
 	{
 		tmp = (char *)malloc(sizeof(char) * (BUF_SIZE + 1));
-		if ((d_fd->ret = read(d_fd->fd, tmp, BUF_SIZE)) == -1)
+		d_fd->ret = read(d_fd->fd, tmp, BUF_SIZE);
+		if (d_fd->ret == -1)
 			return ;
 		tmp[d_fd->ret] = '\0';
 		d_fd->buf = ft_stradd(&d_fd->buf, &tmp);
+		d_fd->pos_nl = ft_strchr(d_fd->buf, '\n');
 	}
 	if (d_fd->ret > 0)
 		d_fd->ret = 1;
 }
 
-int				get_next_line(int const fd, char **line)
+int 	get_next_line(int const fd, char **line)
 {
 	static t_fd		*lst_fd = NULL;
 	t_fd			*d_fd;
 
-	if (fd < 0 || line == NULL || (d_fd = get_data_fd(&lst_fd, fd)) == NULL)
+	d_fd = get_data_fd(&lst_fd, fd);
+	if (fd < 0 || line == NULL || !d_fd)
 		return (-1);
 	if (d_fd->buf == NULL)
 		d_fd->buf = ft_strnew(BUF_SIZE + 1, "");
-	if ((d_fd->pos_nl = ft_strchr(d_fd->buf, '\n')) == 0)
+	d_fd->pos_nl = ft_strchr(d_fd->buf, '\n');
+	if (d_fd->pos_nl == 0)
 		ft_read(d_fd);
 	if (d_fd->ret == 0 && d_fd->pos_nl == 0)
 		d_fd->pos_nl = ft_strlen(d_fd->buf) + 1;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2016/10/17 17:05:15 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/07/02 15:30:57 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/libft.h"
 
-static int		cmp(char c, int *t)
+int 	cmp(char c, int *t)
 {
 	while (*t)
 	{
@@ -23,9 +23,9 @@ static int		cmp(char c, int *t)
 	return (-1);
 }
 
-static char		*my_strrchr(const char *s, int *t)
+char	*my_strrchr(const char *s, int *t)
 {
-	size_t		i;
+	size_t	i;
 
 	i = 0;
 	while ((cmp(s[i], t) == -1) && s[i])
@@ -35,10 +35,10 @@ static char		*my_strrchr(const char *s, int *t)
 	return (NULL);
 }
 
-static int		ft_stspchr(char *s, int *t)
+int 	ft_stspchr(char *s, int *t)
 {
-	int			i;
-	int			j;
+	int		i;
+	int		j;
 
 	i = 0;
 	while ((cmp(s[i], t) == 0) && s[i])
@@ -57,10 +57,10 @@ static int		ft_stspchr(char *s, int *t)
 	return (i);
 }
 
-static int		find_occur(const char *s, int *t)
+int 	find_occur(const char *s, int *t)
 {
-	int			ret;
-	int			i;
+	int		ret;
+	int		i;
 
 	ret = 0;
 	i = 0;
@@ -80,23 +80,24 @@ static int		find_occur(const char *s, int *t)
 	return (ret);
 }
 
-int				ft_strsplit(char ***dst, char const *s, int *t)
+int 	ft_strsplit(char ***dst, char const *s, int *t)
 {
-	int			pos;
-	int			i;
-	int			len;
+	int		pos;
+	int		i;
+	int		len;
 
 	if (!s)
 		return (0);
-	if ((len = find_occur(s, t)) == 0)
+	len = find_occur(s, t);
+	if (!(len))
 		return (-1);
-	*dst = malloc(sizeof(char*) * (len + 1));
+	*dst = malloc(sizeof(char *) * (len + 1));
 	i = 0;
 	while (i < len)
 	{
 		while ((cmp(*s, t) == 0))
 			s++;
-		dst[0][i] = ft_strndup((char*)s, 0, ft_stspchr((char*)s, t));
+		dst[0][i] = ft_strndup((char *)s, 0, ft_stspchr((char *)s, t));
 		s = my_strrchr(s, t);
 		i++;
 	}

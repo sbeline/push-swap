@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stradd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2016/10/17 17:05:15 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/07/02 15:26:24 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*ft_stradd(char **s1, char **s2)
 	int		i;
 
 	i = ft_strlen(*s1) + ft_strlen(*s2);
-	if ((str = (char *)malloc(sizeof(char) * (i + 1))) == NULL)
+	str = (char *)malloc(sizeof(char) * (i + 1));
+	if (!(str))
 		return (NULL);
 	b = str;
 	i = 0;

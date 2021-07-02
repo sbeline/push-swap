@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2016/10/17 17:05:15 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/07/02 15:24:57 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/libft.h"
 
-void		ft_lstadd(t_dllist **alst, t_llist *n)
+void	ft_lstadd(t_dllist **alst, t_llist *n)
 {
 	if (*alst != NULL)
 	{
@@ -32,7 +32,7 @@ void		ft_lstadd(t_dllist **alst, t_llist *n)
 			return ;
 		}
 	}
-	*alst = (t_dllist*)ft_memalloc(sizeof(t_dllist));
+	*alst = (t_dllist *)ft_memalloc(sizeof(t_dllist));
 	(*alst)->lenght = 1;
 	n->smallest = 1;
 	n->lastest = 0;

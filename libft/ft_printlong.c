@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printlong.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2016/10/17 17:05:15 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/07/02 15:37:47 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/libft.h"
 
-void			ft_printlong(long long ll)
+void 	ft_printlong(long long ll)
 {
-	size_t	ret;
+	int	printlldiv;
+	int	orintllmod;
 
-	ret = 1;
+	printlldiv = 0;
+	printllmod = 0;
 	if (ll == LONG_LONG_MIN)
 	{
 		ft_putstr("-9223372036854775808");
@@ -29,6 +31,8 @@ void			ft_printlong(long long ll)
 	}
 	if (ll >= 10)
 	{
+		printlldiv = ll / 10;
+		printllmod = ll % 10;
 		ft_printlong(ll / 10);
 		ft_printlong(ll % 10);
 	}

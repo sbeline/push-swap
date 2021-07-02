@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbeline <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2016/10/17 17:05:15 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/06/16 07:45:33 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/libft.h"
 
-int		ft_atoi(const char *str)
+int 	ft_atoi(const char *str)
 {
 	int		i;
 	int		n;
@@ -22,7 +22,7 @@ int		ft_atoi(const char *str)
 	n = 0;
 	boolean = -1;
 	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\r'
-				|| str[i] == '\f' || str[i] == '\v')
+		|| str[i] == '\f' || str[i] == '\v')
 		i++;
 	if (str[i] == 45 || str[i] == 43)
 	{

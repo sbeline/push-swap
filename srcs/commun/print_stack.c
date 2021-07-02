@@ -6,13 +6,13 @@
 /*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:11:18 by sbeline           #+#    #+#             */
-/*   Updated: 2021/06/10 14:11:49 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/06/16 06:47:38 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static void aff_stack_title(int maxLenghtNb)
+void 	aff_stack_title(int maxLenghtNb)
 {
 	ft_printmuliplecar(maxLenghtNb / 2, ' ');
 	ft_putchar('a');
@@ -26,98 +26,95 @@ static void aff_stack_title(int maxLenghtNb)
 	ft_putchar('\n');
 }
 
-static void placement_print(char *stackName, int maxLenghtNb, int opt)
+void 	placement_print(char *stackName, int maxLenghtNb, int opt)
 {
 	ft_printmuliplecar(maxLenghtNb / 2, ' ');
 	ft_putstr(stackName);
-	maxLenghtNb -= (maxLenghtNb % 2 != 0) ? 0 : 1;
+	if (maxLenghtNb % 2 == 0)
+		maxLenghtNb--;
 	ft_printmuliplecar(maxLenghtNb / 2, ' ');
-	if (opt) {
+	if (opt)
 		ft_putchar('|');
-	}
 }
 
-void listA_is_supp(int maxLenghtNb, t_dllist *a, t_dllist *b)
+void 	listA_is_supp(int maxLenghtNb, t_dllist *a, t_dllist *b)
 {
-	t_llist *lst_a;
-	t_llist *lst_b;
-	int lenghtA;
-	int lenghtB;
+	t_llist		*lst_a;
+	t_llist		*lst_b;
 
-	lenghtA =  (a) ? a->lenght : 0;
-	lenghtB =  (b) ? b->lenght : 0;
+	lst_a = NULL;
+	lst_b = NULL;
 	if (a && a->head)
 	{
-		lst_a = (lenghtA) ? a->head : NULL;
-		lst_b = lst_b = (lenghtB) ? b->head : NULL;
-		//printf("print a lenghtA[%d]; lenghtB[%d]\n", lenghtA, lenghtB);
+		lst_a = a->head;
+		if (b && b->head)
+			lst_b = b->head;
 		while (lst_a)
 		{
-			placement_print(ft_itoa(lst_a->content), maxLenghtNb -
-												ft_nblen(lst_a->content), 1);
-			printf("nb[%d]lastest[%d]smallest[%d]\n",lst_a->content, lst_a->lastest, lst_a->smallest);
+			placement_print(ft_itoa(lst_a->content),
+				maxLenghtNb - ft_nblen(lst_a->content), 1);
 			lst_a = lst_a->next;
 			if (lst_b)
 			{
-				placement_print(ft_itoa(lst_b->content), maxLenghtNb -
-													ft_nblen(lst_b->content), 0);
-				printf("nb[%d]lastest[%d]smallest[%d]\n",lst_a->content, lst_a->lastest, lst_a->smallest);
+				placement_print(ft_itoa(lst_b->content),
+					maxLenghtNb - ft_nblen(lst_b->content), 0);
 				lst_b = lst_b->next;
 			}
 			ft_putchar('\n');
 		}
 	}
 }
-void listB_is_supp(int maxLenghtNb, t_dllist *a, t_dllist *b)
-{
-	t_llist *lst_a;
-	t_llist *lst_b;
-	int lenghtA;
-	int lenghtB;
 
-	lenghtA =  (a) ? a->lenght : 0;
-	lenghtB =  (b) ? b->lenght : 0;
+void 	listB_is_supp(int maxLenghtNb, t_dllist *a, t_dllist *b)
+{
+	t_llist		*lst_a;
+	t_llist		*lst_b;
+
+	lst_b = NULL;
 	if (b && b->head)
 	{
-		lst_a = (lenghtA) ? a->head : NULL;
-		lst_b = lst_b = (lenghtB) ? b->head : NULL;
-	//	printf(" print b lenghtA[%d]; lenghtB[%d]\n", lenghtA, lenghtB);
+		lst_b = b->head;
+		if (a)
+			lst_a = a->head;
 		while (lst_b)
 		{
 			if (lst_a)
 			{
-				placement_print(ft_itoa(lst_a->content), maxLenghtNb -
-													ft_nblen(lst_a->content), 1);
-				printf("lastlest[%d]\n", lst_a->lastest);
+				placement_print(ft_itoa(lst_a->content),
+					maxLenghtNb - ft_nblen(lst_a->content), 1);
 				lst_a = lst_a->next;
-			} else {
-				placement_print(" ", maxLenghtNb - 1, 1);
 			}
-			placement_print(ft_itoa(lst_b->content), maxLenghtNb -
-											ft_nblen(lst_b->content), 0);
-			printf("lastestlest[%d]\n", lst_a->smallest);
+			else
+				placement_print(" ", maxLenghtNb - 1, 1);
+			placement_print(ft_itoa(lst_b->content),
+				maxLenghtNb - ft_nblen(lst_b->content), 0);
 			lst_b = lst_b->next;
 			ft_putchar('\n');
 		}
 	}
 }
 
-void view_stack(t_dllist *a, t_dllist *b, int maxLenghtNb)
+void 	view_stack(t_dllist *a, t_dllist *b, int maxLenghtNb)
 {
-	int lenghtA;
-	int lenghtB;
+	int		lenghtA;
+	int		lenghtB;
 
-	maxLenghtNb += (maxLenghtNb % 2 == 0) ? 0 : 1;
-	lenghtA =  (a) ? a->lenght : 0;
-	lenghtB =  (b) ? b->lenght : 0;
+	if (maxLenghtNb % 2 == 0)
+		maxLenghtNb--;
 	aff_stack_title(maxLenghtNb - 1);
-	if (lenghtA || 	lenghtB)
+	if (!b)
+		lenghtB = 0;
+	else
+		lenghtB = b->lenght;
+	if (!a)
+		lenghtA = 0;
+	else
+		lenghtA = a->lenght;
+	if (lenghtA || lenghtB)
 	{
-		if (lenghtA >= lenghtB) {
+		if (a->lenght >= lenghtB)
 			listA_is_supp(maxLenghtNb, a, b);
-		} else {
+		else
 			listB_is_supp(maxLenghtNb, a, b);
-		}
-
 	}
 }
