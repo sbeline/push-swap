@@ -6,7 +6,7 @@
 /*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2021/06/14 11:46:00 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/08/20 15:36:17 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int 	swap(t_dllist *stack, t_dllist *stack1, int opt)
 	if (opt == 0 && stack)
 	{
 		swap_stack(&stack);
-		ft_putstr("[sa]");
+		ft_putendl("sa");
 	}
 	else if (opt == 1 && stack1)
 	{
 		swap_stack(&stack1);
-		ft_putstr("[sb]");
+		ft_putendl("sb");
 	}
 	else if (opt == 2)
 	{
@@ -49,7 +49,7 @@ int 	swap(t_dllist *stack, t_dllist *stack1, int opt)
 			swap_stack(&stack);
 		if (stack1)
 			swap_stack(&stack1);
-		ft_putstr("[ss]");
+		ft_putendl("ss");
 	}
 	return (0);
 }
@@ -59,12 +59,12 @@ int 	ft_rotate(t_dllist *stack, t_dllist *stack1, int opt)
 	if (opt == 0 && stack)
 	{
 		rotate(&stack);
-		ft_putstr("[ra]");
+		ft_putendl("ra");
 	}
 	else if (opt == 1 && stack1)
 	{
 		rotate(&stack1);
-		ft_putstr("[rb]");
+		ft_putendl("rb");
 	}
 	else if (opt == 2)
 	{
@@ -72,7 +72,7 @@ int 	ft_rotate(t_dllist *stack, t_dllist *stack1, int opt)
 			rotate(&stack);
 		if (stack1)
 			rotate(&stack1);
-		ft_putstr("[rr]");
+		ft_putendl("rr");
 	}
 	return (0);
 }
@@ -82,12 +82,12 @@ int 	ft_rrotate(t_dllist *stack, t_dllist *stack1, int opt)
 	if (opt == 0 && stack)
 	{
 		rrotate(&stack);
-		ft_putstr("[rra]");
+		ft_putendl("rra");
 	}
 	else if (opt == 1 && stack1)
 	{
 		rrotate(&stack1);
-		ft_putstr("[rrb]");
+		ft_putendl("rrb");
 	}
 	else if (opt == 2)
 	{
@@ -95,7 +95,7 @@ int 	ft_rrotate(t_dllist *stack, t_dllist *stack1, int opt)
 			rrotate(&stack);
 		if (stack1)
 			rrotate(&stack1);
-		ft_putstr("[rrr]");
+		ft_putendl("rrr");
 	}
 	return (0);
 }

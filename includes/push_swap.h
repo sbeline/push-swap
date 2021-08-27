@@ -6,7 +6,7 @@
 /*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2021/06/16 06:58:39 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/07/09 16:24:29 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int					ft_rotate(t_dllist *stack, t_dllist *stack1, int opt);
 int					ft_rrotate(t_dllist *stack, t_dllist *stack1, int opt);
 void				rest_src(t_dllist *stack_a, t_dllist *stack_b);
 void				rest_stack(t_dllist *stack_a, t_dllist *stack_b);
+void				rest_one_stack(t_dllist *stack);
 void				find_smallest(t_dllist *stack);
 
 int					stack_is_ok(t_dllist *stack_a, t_dllist *stack_b);

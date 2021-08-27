@@ -6,7 +6,7 @@
 /*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:10:17 by sbeline           #+#    #+#             */
-/*   Updated: 2021/06/15 07:01:25 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/08/26 16:03:10 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,24 @@ int 	stack_raw_is_merge(t_dllist *stack)
 	int			nb;
 
 	if ((stack) == NULL)
-		return (-1);
-	if (stack->last_entry_smallest->next)
-		ptr = stack->last_entry_smallest->next;
-	else
+		return (1);
+	if (!stack->last_entry_smallest->next)
 		ptr = stack->head;
-	view_stack(stack, NULL, 42);
+	else
+		ptr = stack->last_entry_smallest->next;
 	while (!ptr->smallest)
 	{
-		if (!ptr->next)
-			ptr = stack->head;
-		else
+		if (ptr->next)
 		{
 			if (!ptr->next->smallest && ptr->content > ptr->next->content)
 				return (0);
 			ptr = ptr->next;
+		}
+		else
+		{
+			if (!stack->head->smallest && ptr->content > stack->head->content)
+				return (0);
+			ptr = stack->head;
 		}
 	}
 	return (1);

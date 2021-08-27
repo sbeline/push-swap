@@ -6,7 +6,7 @@
 /*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 17:04:58 by sbeline           #+#    #+#             */
-/*   Updated: 2021/06/11 14:18:51 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/07/29 19:30:28 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ int 	push_swap(t_dllist *stack_a, int maxLenghtNb)
 	if (stack_a->lenght < 30 )
 		divide_algo(stack_a, maxLenghtNb);
 	else
+	{
 		merge_stack_brut(stack_a, NULL);
+		rest_one_stack(stack_a);
+		ft_putendl("");
+	}
 }
 
 int 	main(int ac, char **av)

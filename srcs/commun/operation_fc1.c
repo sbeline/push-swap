@@ -6,7 +6,7 @@
 /*   By: sbeline <sbeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 14:11:42 by sbeline           #+#    #+#             */
-/*   Updated: 2021/06/14 12:23:11 by sbeline          ###   ########.fr       */
+/*   Updated: 2021/08/23 14:42:12 by sbeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,52 @@
 
 void 	rest_one_stack(t_dllist *stack)
 {
-	if (!stack)
-		return ;
+	while (!stack->head->smallest)
+	{
+		ft_rotate(stack, NULL, 0);
+	}
 }
 
 void	rest_stack(t_dllist *stack_a, t_dllist *stack_b)
 {
-	while (!stack_a->head->smallest || !stack_b->head->smallest)
+	while ((stack_a && !stack_a->head->smallest)
+			|| (stack_b && !stack_b->head->smallest))
 	{
-		if (!stack_a->head->smallest && !stack_b->head->smallest)
+		if (!stack_a && !stack_a->head->smallest
+			&& !stack_b && !stack_b->head->smallest)
 			ft_rotate(stack_a, stack_b, 2);
 		else if (!stack_a->head->smallest)
 			ft_rotate(stack_a, NULL, 0);
 		else if (!stack_b->head->smallest)
 			ft_rotate(NULL, stack_b, 1);
 	}
+	if (stack_a)
+		stack_a->tail->lastest = 1;
+	if (stack_b)
+		stack_b->tail->lastest = 1;
 }
 
 void 	rest_src(t_dllist *stack_a, t_dllist *stack_b)
 {
-	if (stack_a->last_entry_smallest)
+	if (stack_a)
 	{
-		stack_a->last_entry_smallest->smallest = 0;
-		stack_a->last_entry_smallest = NULL;
+		if (stack_a->last_entry_smallest)
+		{
+			stack_a->last_entry_smallest->smallest = 0;
+			stack_a->last_entry_smallest = NULL;
+		}
+		find_smallest(stack_a);
 	}
-	if (stack_b->last_entry_smallest)
+	if (stack_b)
 	{
-		stack_b->last_entry_smallest->smallest = 0;
-		stack_b->last_entry_smallest = NULL;
+		if(stack_b->last_entry_smallest)
+		{
+			stack_b->last_entry_smallest->smallest = 0;
+			stack_b->last_entry_smallest = NULL;
+		}
+		find_smallest(stack_b);
 	}
-	find_smallest(stack_a);
-	find_smallest(stack_b);
 	rest_stack(stack_a, stack_b);
-	stack_a->tail->lastest = 1;
-	stack_b->tail->lastest = 1;
 }
 
 int 	stack_is_ok(t_dllist *stack_a, t_dllist *stack_b)
@@ -55,6 +67,7 @@ int 	stack_is_ok(t_dllist *stack_a, t_dllist *stack_b)
 	t_llist	*ptr;
 
 	ptr = stack_a->head;
+
 	if (stack_b)
 		return (-1);
 	while (ptr->next)
