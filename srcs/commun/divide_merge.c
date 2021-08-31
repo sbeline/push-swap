@@ -138,7 +138,7 @@ void 	merge_stack_brut(t_dllist *stack_a, t_dllist *stack_b)
 			a_merge = stack_raw_is_merge(stack_a);
 		if (!b_merge)
 			b_merge = stack_raw_is_merge(stack_b);
-		view_stack(stack_a, stack_b, 42);
+		/*view_stack(stack_a, stack_b, 42);
 		ft_putstr("stack_a status=");
 		ft_putnbr(a_merge);
 		ft_putstr("-------stack_b status=");
@@ -146,17 +146,11 @@ void 	merge_stack_brut(t_dllist *stack_a, t_dllist *stack_b)
 		ft_putstr("lastest0 status=");
 		ft_putnbr(l_lastest[0]);
 		ft_putstr("-------------lastest1 status=");
-		ft_putnbr(l_lastest[0]);
+		ft_putnbr(l_lastest[0]);*/
 		if (l_lastest[0] || l_lastest[1])
-		{
-			ft_putstr("in first loop");
 			r_s_brut(stack_a, stack_b, a_merge, b_merge, &l_lastest);
-		}
 		else if (!l_lastest[0] || !l_lastest[1])
-		{
-			ft_putstr("in first loop");
 			stack_brut(stack_a, stack_b, a_merge, b_merge, &l_lastest);
-		}
 	}
 }
 
@@ -169,7 +163,7 @@ void 	divide_algo(t_dllist *stack_a, int maxLenghtNb)
 	{
 		 stack_b = divide_stack(stack_a, stack_a->lenght / 2);
 	}
-	view_stack(stack_a, stack_b, 42);
+	//view_stack(stack_a, stack_b, 42);
 	merge_stack_brut(stack_a, stack_b);
 	rest_src(stack_a, stack_b);
 	fusion_merge(stack_a, stack_b);
@@ -179,5 +173,5 @@ void 	divide_algo(t_dllist *stack_a, int maxLenghtNb)
 		stack_b = NULL;
 	}
 	stack_is_ok(stack_a, stack_b);
-	view_stack(stack_a, stack_b, 42);
+	//view_stack(stack_a, stack_b, 42);
 }
