@@ -54,9 +54,6 @@ int 	swap_check(t_dllist *stack_a, t_dllist *stack_b, int a, int b)
 
 void 	fusion_merge(t_dllist *stack_a, t_dllist *stack_b)
 {
-	int		count;
-
-	count = 0;
 	while (stack_b)
 	{
 		if (stack_b && stack_a->head->lastest && stack_b->head->content > stack_a->head->content)
@@ -77,7 +74,6 @@ void 	fusion_merge(t_dllist *stack_a, t_dllist *stack_b)
 			push(&stack_b, &stack_a);
 			ft_putendl("pa");
 		}
-
 		else if (stack_b && stack_b->head->content > stack_a->head->content)
 			ft_rotate(stack_a, NULL, 0);
 		else if (stack_b && stack_b->head->content < stack_a->head->content)

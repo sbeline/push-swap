@@ -12,6 +12,11 @@
 
 #include "../../includes/push_swap.h"
 
+void divide_merge(t_dllist *s_a, t_dllist *s_b)
+{
+	
+}
+
 t_dllist	*divide_stack(t_dllist *stack_a, int midLenghtStack)
 {
 	t_dllist	*stack_b;
