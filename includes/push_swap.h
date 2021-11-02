@@ -44,4 +44,7 @@ t_dllist			*validate_and_stacka(char **av, int ac, int *maxLenghtNb);
 void				divide_algo(t_dllist *stack_a, int maxLenghtNb);
 void				merge_stack_brut(t_dllist *stack_a, t_dllist *stack_b);
 t_dllist			*divide_stack(t_dllist *stack_a, int midLenghtStack);
+void				fusion_phase_one(t_dllist *stack_a, t_dllist *stack_b);
+t_llist				*define_lastest(t_llist *l, t_llist *l_next);
+void				fusion_merge(t_dllist *stack_a, t_dllist *stack_b);
 #endif

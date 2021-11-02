@@ -23,7 +23,7 @@ void 	rest_one_stack(t_dllist *stack)
 void	rest_stack(t_dllist *stack_a, t_dllist *stack_b)
 {
 	while ((stack_a && !stack_a->head->smallest)
-			|| (stack_b && !stack_b->head->smallest))
+		|| (stack_b && !stack_b->head->smallest))
 	{
 		if (!stack_a && !stack_a->head->smallest
 			&& !stack_b && !stack_b->head->smallest)
@@ -52,7 +52,7 @@ void 	rest_src(t_dllist *stack_a, t_dllist *stack_b)
 	}
 	if (stack_b)
 	{
-		if(stack_b->last_entry_smallest)
+		if (stack_b->last_entry_smallest)
 		{
 			stack_b->last_entry_smallest->smallest = 0;
 			stack_b->last_entry_smallest = NULL;
@@ -67,7 +67,6 @@ int 	stack_is_ok(t_dllist *stack_a, t_dllist *stack_b)
 	t_llist	*ptr;
 
 	ptr = stack_a->head;
-
 	if (stack_b)
 		return (-1);
 	while (ptr->next)

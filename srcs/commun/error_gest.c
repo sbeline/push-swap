@@ -12,10 +12,19 @@
 
 #include "../../includes/push_swap.h"
 
+int 	command_or_neg(char *s, int pos)
+{
+	int	count;
+
+	count = 0;
+	if (ft_isdigit(s[pos + 1]))
+		count++;
+	return (count);
+}
+
 int 	stack_raw_is_merge(t_dllist *stack)
 {
 	t_llist		*ptr;
-	int			nb;
 
 	if ((stack) == NULL)
 		return (1);
@@ -44,7 +53,6 @@ int 	stack_raw_is_merge(t_dllist *stack)
 int 	stack_is_merge(t_dllist *stack)
 {
 	t_llist		*ptr;
-	int			nb;
 
 	if ((stack) == NULL)
 		return (-1);
@@ -69,8 +77,12 @@ int 	control(char *av, t_dllist **stack)
 		return (1);
 	ptr = (*stack)->head;
 	while (av[i])
+	{
+		if (av[i] == '-')
+			i += command_or_neg(av, i);
 		if (!ft_isdigit(av[i++]))
 			return (-1);
+	}
 	nb = ft_atoi(av);
 	while (ptr)
 	{

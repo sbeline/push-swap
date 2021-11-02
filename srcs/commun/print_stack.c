@@ -53,10 +53,6 @@ void 	listA_is_supp(int maxLenghtNb, t_dllist *a, t_dllist *b)
 		{
 			placement_print(ft_itoa(lst_a->content),
 				maxLenghtNb - ft_nblen(lst_a->content), 1);
-			ft_putstr("lst_a->smallest=");
-			ft_putnbr(lst_a->smallest);
-			ft_putstr("lst_a->lastest=");
-			ft_putnbr(lst_a->lastest);
 			lst_a = lst_a->next;
 			if (lst_b)
 			{
@@ -100,8 +96,8 @@ void 	listB_is_supp(int maxLenghtNb, t_dllist *a, t_dllist *b)
 
 void 	view_stack(t_dllist *a, t_dllist *b, int maxLenghtNb)
 {
-	int		lenghtA;
-	int		lenghtB;
+	size_t		lenghtA;
+	size_t		lenghtB;
 
 	if (maxLenghtNb % 2 == 0)
 		maxLenghtNb--;
