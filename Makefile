@@ -1,70 +1,72 @@
-NAME = checker
-
-NAME2 = push_swap
-
-CHECKER_NAME = checker.c
-
-PUSH_SWAP_NAME = push_swap.c
-
-COMMUN_NAME = operation_fc.c \
-				checker_ps.c \
-				operate.c \
-				error_gest.c \
-				print_stack.c \
-				divide_merge.c \
-				divide_merge1.c \
-				operation_fc1.c
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sbeline  <sbeline @student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2015/01/14 14:10:26 by sbeline           #+#    #+#              #
+#    Updated: 2016/10/19 16:50:24 by sbeline          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 
-INC_PATH = ./includes/
-CHECKER_PATH = ./srcs/checker/
-PUSH_SWAP_PATH = ./srcs/push_swap/
-COMMUN_PATH = ./srcs/commun/
-OBJ_PUSH_SWAP_PATH = ./obj_push_swap/
-OBJ_CHECKER_PATH = ./obj_checker/
-OBJ_COMMUN_PATH = ./obj_commun/
-LIB_PATH = ./libft/
-LIB_NAME = libft.a
-CC = gcc
-CFLAGS = -Werror -Wall -Wextra
-OBJ_NAME_CHECKER = $(CHECKER_NAME:.c=.o)
-OBJ_NAME_PUSH_SWAP = $(PUSH_SWAP_NAME:.c=.o)
-OBJ_NAME_COMMUN = $(COMMUN_NAME:.c=.o)
-OBJ_CHECKER = $(addprefix $(OBJ_CHECKER_PATH),$(OBJ_NAME_CHECKER))
-OBJ_PUSH_SWAP = $(addprefix $(OBJ_PUSH_SWAP_PATH),$(OBJ_NAME_PUSH_SWAP))
-OBJ_COMMUN = $(addprefix $(OBJ_COMMUN_PATH),$(OBJ_NAME_COMMUN))
-LIB = $(addprefix $(LIB_PATH),$(LIB_NAME))
-INC = $(addprefix -I,$(INC_PATH))
+NAME = libft.a
 
-all:$(NAME)
+SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c
+SRC += ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c
+SRC += ft_lstadd.c ft_lstdel.c ft_lstiter.c
+SRC += ft_lstmap.c ft_lstnew.c ft_memalloc.c ft_memccpy.c
+SRC += ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memdel.c
+SRC += ft_memmove.c ft_memset.c ft_putchar.c ft_putchar_fd.c
+SRC += ft_putendl.c ft_putendl_fd.c ft_putnbr.c ft_putnbr_fd.c
+SRC += ft_putstr.c ft_putstr_fd.c ft_strcat.c ft_strchr.c
+SRC += ft_strclr.c ft_strcmp.c ft_strcpy.c ft_strdel.c
+SRC += ft_strdup.c ft_strequ.c ft_striter.c ft_striteri.c
+SRC += ft_strjoin.c  ft_strlen.c ft_strmap.c
+SRC += ft_strmapi.c ft_strncat.c ft_strncmp.c ft_strncpy.c
+SRC += ft_strnew.c ft_strnstr.c ft_strrchr.c
+SRC += ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c
+SRC += ft_tolower.c ft_toupper.c ft_list_search.c
+SRC += ft_strconct.c ft_strnb.c ft_putstr_rev.c
+SRC += ft_nbsize.c ft_lenghtwchar.c ft_lenghtstrwchar.c
+SRC += ft_printunint.c ft_lenghtunint.c ft_isdir.c
+SRC += get_next_line.c ft_stradd.c ft_strmove.c ft_printmuliplecar.c
+SRC +=  ft_strtrijoin.c ft_strndup.c ft_findstr.c ft_chrstr.c ft_nblen.c
 
-$(NAME): $(OBJ_CHECKER) $(OBJ_COMMUN) $(NAME2) libf
-	$(CC) $(CFLAGS) $(OBJ_CHECKER) $(OBJ_COMMUN) $(LIB) $(INC) -o $@
+DEL = rm -f
 
-$(OBJ_CHECKER_PATH)%.o:$(CHECKER_PATH)%.c
-	@mkdir -p $(OBJ_CHECKER_PATH)
-	$(CC) -c $< -o $@
+OBJ = $(SRC:.c=.o)
 
-$(NAME2): $(OBJ_PUSH_SWAP) $(OBJ_COMMUN) libf
-		$(CC) $(CFLAGS) $(OBJ_PUSH_SWAP) $(OBJ_COMMUN) $(LIB) $(INC) -o $@
+FLAG = -Wall -Werror -Wextra
 
-$(OBJ_PUSH_SWAP_PATH)%.o:$(PUSH_SWAP_PATH)%.c
-	@mkdir -p $(OBJ_PUSH_SWAP_PATH)
-	$(CC) -c $< -o $@
+all: $(NAME)
 
-$(OBJ_COMMUN_PATH)%.o:$(COMMUN_PATH)%.c
-	@mkdir -p $(OBJ_COMMUN_PATH)
-	$(CC) -c $< -o $@
+$(NAME): $(OBJ)
+	@ar rc $@ $(OBJ)
+	@ranlib $(NAME)
+	@echo
+	@echo "make -> $@ created"
+	@echo
 
-libf:
-	make -C $(LIB_PATH)
+%.o: %.c
+	@gcc -o $@ -c $< -I.Includes/
 
 clean:
-	make -C $(LIB_PATH) fclean
-	rm -rf $(OBJ_COMMUN_PATH)
-	rm -rf $(OBJ_CHECKER_PATH)
+	@$(DEL) $(OBJ)
+	@echo
+	@echo "clean -> .o deleted"
+	@echo
 
 fclean: clean
-	rm -rf $(NAME)
+	@$(DEL) $(NAME)
+	@echo
+	@echo "fclean -> ... and $(NAME) deleted"
+	@echo
 
 re: fclean all
+	@echo
+	@echo "re -> $(NAME) reloaded"
+	@echo
+
+.PHONY: all clean fclean re

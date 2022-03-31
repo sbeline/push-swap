@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <string.h>
 # include <time.h>
 # include <wchar.h>
 # include <limits.h>
@@ -33,6 +32,8 @@
 # include <stdio.h>
 # include <termios.h>
 # include <unistd.h>
+# include <string.h>
+# include <errno.h>
 # define BUF_SIZE 1496
 # define FILES 50
 # define REP 60
@@ -133,7 +134,7 @@ char		*ft_strsub(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strnjoin(char *s1, char *s2, int begin, int end);
 char		*ft_strtrim(char const *s);
-int			ft_strsplit(char ***dst, char const *s, int *t);
+char		**ft_strsplit(char const *s, char c);
 int			ft_strisdigit(char *str);
 int			get_next_line(int fd, char **line);
 int			ft_nblen(int n);
